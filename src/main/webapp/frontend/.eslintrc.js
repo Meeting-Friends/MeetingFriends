@@ -13,6 +13,7 @@ module.exports = {
 	plugins: ['prettier'],
 	parserOptions: {
 		parser: 'babel-eslint',
+		sourceType: 'module',
 	},
 	rules: {
 		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
