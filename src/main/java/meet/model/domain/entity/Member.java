@@ -1,4 +1,4 @@
-package meet.domain.entity;
+package meet.model.domain.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,11 +19,12 @@ public class Member {
 	@Id
 	private String id;
 	private String pw;
+	private String name;
 	private String nickname;
 	private String phonenumber;
 	private String birth;
 	private String gender;
-	private String local;
-	private String classification;
-	private String picturepath;
+	private String classification;	//권한(ex. 관리자, 일반회원)
+//	private String local;
+//	private String picturepath;
 }

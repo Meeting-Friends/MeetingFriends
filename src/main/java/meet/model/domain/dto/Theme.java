@@ -1,4 +1,4 @@
-package model.domain.dto;
+package meet.model.domain.dto;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
