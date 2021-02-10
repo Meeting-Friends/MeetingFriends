@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import meet.model.domain.entity.Member;
 import meet.service.MemberService;
 
-@Controller(value="signupcontroller")
+@Controller
 public class SignUpController {
 	@Autowired
 	MemberService memberservice;
 
-	@PostMapping("/signup")
+	@PostMapping("signup")
 	public String loginCheck(@RequestBody Member inputmember,Model model) {		
 		if(memberservice.checkExistingMember(inputmember.getId())) {
 			memberservice.insertMember(inputmember);	//DB에 저장
