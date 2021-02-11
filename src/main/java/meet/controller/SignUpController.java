@@ -1,24 +1,21 @@
 package meet.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import meet.model.domain.entity.Member;
 import meet.service.MemberService;
 
-@Controller
+@Controller(value="SignUpController")
 public class SignUpController {
 	@Autowired
 	MemberService memberservice;
 
-	@PostMapping("signup")
+	@PostMapping("/signup")
 	public String loginCheck(@RequestBody Member inputmember,Model model) {		
 		if(memberservice.checkExistingMember(inputmember.getId())) {
 			memberservice.insertMember(inputmember);	//DB에 저장

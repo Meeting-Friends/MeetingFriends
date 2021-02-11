@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan("payroll.controller")
-@EnableJpaRepositories("payroll.dao")
-@EntityScan("payroll.domain")
+@ComponentScan("meet")
+@EnableJpaRepositories("meet.dao")
+@EntityScan("meet.model.domain")
 public class MeetingFriendsApplication {
 
 	public static void main(String[] args) {

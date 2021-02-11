@@ -12,7 +12,7 @@ public class ExceptionHandler {
 		return "/errors/boardError";
 	}
 
-	@ExceptionHandler(Exception.class)
+	@org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
 	public String handleException(Exception exception, Model model) {
 		model.addAttribute("exception", exception);
 		return "/errors/globalError";
