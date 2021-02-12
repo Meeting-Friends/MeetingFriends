@@ -32,15 +32,15 @@ class MeetingFriendsApplicationTests {
 	
 	@Test
 	void controllerTest() throws Exception {
-		
-		String content = ObjectMapper..writeValueAsString(new Member("kim", "123","junhyeong","lakjdsflfjads","123123123","1022","man","master"));
-
-		mock.perform(post("/signup")
-	        .content(content)
-	        .contentType(MediaType.APPLICATION_JSON)
-	        .accept(MediaType.APPLICATION_JSON))
-	        .andExpect(status().isOk())
-	        .andDo(print());
+//		
+//		String content = ObjectMapper..writeValueAsString(new Member("kim", "123","junhyeong","lakjdsflfjads","123123123","1022","man","master"));
+//
+//		mock.perform(post("/signup")
+//	        .content(content)
+//	        .contentType(MediaType.APPLICATION_JSON)
+//	        .accept(MediaType.APPLICATION_JSON))
+//	        .andExpect(status().isOk())
+//	        .andDo(print());
 	  }
 	//	mock.perform(get("/")).andExpect(status().isOk()).andDo(print());
 	//	mock.perform(get("/param").param("id", "data")).andDo(print());

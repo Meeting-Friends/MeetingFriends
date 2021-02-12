@@ -26,10 +26,12 @@ public class WaitingRoomRestController {
 			ModelAndView mv = new ModelAndView("getroomlist");
 			mv.addObject("r_id", r.getR_id());
 			mv.addObject("roomhost_id", r.getRoomhost_id());
-			mv.addObject("r_title", r.getR_title());
-			mv.addObject("maxmemnum",r.getMaxmemnum());
+			mv.addObject("r_title", r.getTitle());
+			mv.addObject("maxpeople",r.getMaxpeople());
 			mv.addObject("gender",r.getGender());
-			mv.addObject("thema",r.getThema());
+			mv.addObject("minage",r.getMinage());
+			mv.addObject("maxage",r.getMaxage());
+			mv.addObject("theme",r.getTheme());
 			mv.addObject("entrancememnum",r.getRoommember().size());
 			list.add(mv);
 		}

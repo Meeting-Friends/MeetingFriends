@@ -25,13 +25,13 @@ public class WaitingRoomController {
 	AdminAllList adminAllList;
 	@Autowired
 	MemberService memberservice;
-	//	@Autowired
-	//	ServletContext servletContext;
+	//@Autowired
+	//ServletContext servletContext;
 
 	//로그아웃 버튼 클릭시 실행
 	@GetMapping("/logout")
 	public String Logout(@RequestParam String id,SessionStatus status) {
-
+		
 		status.setComplete();	//세션 초기화
 		//id를 가진 회원이 로그아웃 요청을 했을 경우 loginmemberlist에서 삭제
 		adminAllList.getLoginMemberList()
@@ -50,7 +50,7 @@ public class WaitingRoomController {
 	//방정보 입력후 방만들기 버튼 클릭시 실행(방장O)
 	@PostMapping("/createroom")
 	public String createRoom(@RequestBody Room r,Model model) {
-		model.addAttribute("roomid",r.getR_id());
+		model.addAttribute("roomid",r.getR_id());	//방id 입장후 알 수 있으므로 meetingroom controller로 이동 필요
 		r.setRoomhost_id(model.getAttribute("memberid").toString());
 		adminAllList.getRoomList().add(r);
 		return "forward:meetingroom.html";	//room id와 함께 전송하도록 수정!!!!
@@ -66,7 +66,7 @@ public class WaitingRoomController {
 				return "forward:meetingroom.html";	//room id와 함께 전송하도록 수정!!!!
 			}
 		}
-		return "forward:waitingroom.html";	//찾고자 하는 방이 리스트에 없을 경우 대기실로 다시 돌아감.
+		return "forward:meetingroom.html";	//찾고자 하는 방이 리스트에 없을 경우 대기실로 다시 돌아감.
 	}
 
 }

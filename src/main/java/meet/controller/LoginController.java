@@ -23,18 +23,21 @@ public class LoginController{
 //	@Autowired
 //	ServletContext servletContext;
 
-	@PostMapping("/logincheck")
+	@PostMapping("/signin")
 	public String loginCheck(@RequestBody Member member,Model model) {				
 		Member newmember = memberservice.checkMember(member.getId(),member.getPw());
 
 		if(newmember!=null) {	//회원정보가 있다면	
-			System.out.println("로그인 성공!!");
-			adminAllList.getLoginMemberList().add(newmember);	
-			model.addAttribute("memberid",newmember.getId());	//회원 개인 session에 id 등록			
-		//	servletContext.setAttribute("loginmemberlist", adminAllList.getLoginmemberlist());	//로그인된 회원 정보들 리스트를 application scope에서 공유
-			
-			return "redirect:/waitingroom.html";	//수정예정
-			
+			if(newmember.getId().equals("admin")) {	//관리자일때
+				return "redirect:/adminpage.html";	//수정예정
+			}else {	//일반회원일때
+				adminAllList.getLoginMemberList().add(newmember);	
+				model.addAttribute("memberid",newmember.getId());	//회원 개인 session에 id 등록			
+			//	servletContext.setAttribute("loginmemberlist", adminAllList.getLoginmemberlist());	//로그인된 회원 정보들 리스트를 application scope에서 공유
+				System.out.println("로그인성공!!!");
+				System.out.println(adminAllList.getLoginMemberList());
+				return "redirect:/waitingroom.vue";	//수정예정
+			}			
 		}else {	
 			System.out.println("로그인 실패!!");		
 			return "forward:/login.html";	//수정예정

@@ -18,6 +18,7 @@ public class SignUpController {
 	@PostMapping("/signup")
 	public String loginCheck(@RequestBody Member inputmember,Model model) {		
 		if(memberservice.checkExistingMember(inputmember.getId())) {
+			inputmember.setClassification("general");
 			memberservice.insertMember(inputmember);	//DB에 저장
 			return "redirect:signin.html";	//회원가입 성공시, 로그인 페이지로 이동
 		}else {
