@@ -24,7 +24,7 @@ const router = new VueRouter({
 		{
 			path: '/signup',
 			// name: 'Signup',
-			component: () => import('@/views/MemberAgree.vue'),
+			component: () => import('@/views/Signup.vue'),
 		},
 		// {
 		// 	path: '/add',

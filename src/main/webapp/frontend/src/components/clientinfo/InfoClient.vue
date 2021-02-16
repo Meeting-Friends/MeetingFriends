@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div>
 		<table border="1">
 			<tr>
 				<th>회원 아이디</th>
@@ -12,7 +12,6 @@
 				<td>{{ data.id }}</td>
 				<td>{{ data.name }}</td>
 				<td>{{ data.nickname }}</td>
-				<!-- <td>{{ value.wariningnumber }}</td> -->
 				<td>{{ data.classification }}</td>
 			</tr>
 		</table>
@@ -23,23 +22,15 @@
 export default {
 	data() {
 		return {
-			//form values
-			id: '',
-			name: '',
-			nickname: '',
-			birth: '',
-			gender: '',
-			//log
-			logMessage: '',
+			data: [],
 		};
 	},
 	name: 'InfoClient',
 	methods: {
 		clientSession() {
 			//const data = sessionStorage.getItem('userinfo');
-			const data = this.$session.get('userinfo'); //서버에서 member session 정보
-			console.log(data);
-			this.logMessage = `${data.username}님이 접속중입니다.`;
+			this.data = this.$session.get('userinfo');
+			this.logMessage = `${this.data.username}님이 접속중입니다.`;
 		},
 	},
 	// 화면 시작 시 clientSession 함수 실행

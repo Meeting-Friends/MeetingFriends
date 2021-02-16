@@ -52,10 +52,12 @@ export default {
 					pw: this.pw,
 				};
 				const data = await signinUser(userData);
-				console.log(data);
+				console.log(data.data);
 				// this.$store.commit('setToken', data.token);
 				// this.$store.commit('setId', data.user.id);
-				this.$router.push('../' + data.data);
+
+				this.$session.set('userinfo', data.data.memberinfo); //브라우저 localstorage에 멤버정보 저장
+				this.$router.push('../' + data.data.desturl);
 			} catch (error) {
 				// 에러 핸들링할 코드
 				console.log(error.response.data);

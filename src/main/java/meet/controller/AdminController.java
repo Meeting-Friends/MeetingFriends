@@ -22,7 +22,6 @@ public class AdminController {
 	//전체 회원정보 반환
 	@GetMapping("/getMemberList")
 	public List<Member> getBoardList() {
-		System.out.println("check!!!!!");
 		return 	memberservice.getMemberList();
 	}
 	
