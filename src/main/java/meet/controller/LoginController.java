@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import meet.model.domain.dto.AdminAllList;
 import meet.model.domain.entity.Member;
 import meet.service.MemberService;
 
-@SessionAttributes({"memberid",})
+@SessionAttributes({"userinfo","roominfo"})
 @RestController(value="LoginController")
 public class LoginController{
 	@Autowired
@@ -23,23 +24,23 @@ public class LoginController{
 //	ServletContext servletContext;
 
 	@PostMapping("/signin")
-	public String loginCheck(@RequestBody Member member,Model model) {				
-		Member newmember = memberservice.checkMember(member.getId(),member.getPw());
+	public String loginCheck(@RequestBody Member member, Model model) {				
+		Member newmember = memberservice.checkMember(member.getId(), member.getPw());
 
 		if(newmember!=null) {	//회원정보가 있다면	
 			if(newmember.getId().equals("admin")) {	//관리자일때
 				return "admin";	//수정예정
 			}else {	//일반회원일때
 				adminAllList.getLoginMemberList().add(newmember);	
-				model.addAttribute("memberid",newmember.getId());	//회원 개인 session에 id 등록			
+				model.addAttribute("userinfo",model);	//회원 개인 session에 id 등록		
 			//	servletContext.setAttribute("loginmemberlist", adminAllList.getLoginmemberlist());	//로그인된 회원 정보들 리스트를 application scope에서 공유
 				System.out.println("로그인성공!!!");
-				System.out.println(adminAllList.getLoginMemberList());
-				return "main";	//수정예정
+				return "waittingroom";	
 			}			
+
 		}else {	
 			System.out.println("로그인 실패!!");		
-			return "signin";	//수정예정
+			return "signin";	
 		}
 	}
 }

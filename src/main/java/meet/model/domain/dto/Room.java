@@ -22,8 +22,7 @@ import meet.model.domain.entity.Member;
 @Component
 @Scope("Prototype")
 public class Room {
-	private String r_id;	//방 id
-	private String roomhost_id;	//방장 id
+	private String rId;	//방 id
 	private String title;
 	private int maxpeople;
 	private String theme;

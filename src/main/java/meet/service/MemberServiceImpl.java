@@ -27,8 +27,10 @@ public class MemberServiceImpl implements MemberService{
 	public boolean checkExistingMember(String id) {	
 		Optional<Member> findMember = mrepository.findById(id);
 		if(findMember.isPresent()){	//이미 존재하는 id라면 회원가입 불가
+			System.out.println("회원가입불가");
 			return false;
 		}else {			//회원가입 가능, id만 중복되지 않으면 가능!
+			System.out.println("회원가입가능");
 			return true;
 		}
 	}

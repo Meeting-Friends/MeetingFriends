@@ -1,3 +1,1 @@
-module.exports = {
-  preset: "@vue/cli-plugin-unit-jest"
-};
+export const preset = '@vue/cli-plugin-unit-jest';

@@ -19,11 +19,14 @@ public class AdminController {
 	@Autowired
 	MemberService memberservice;
 	
+	//전체 회원정보 반환
 	@GetMapping("/getMemberList")
 	public List<Member> getBoardList() {
+		System.out.println("check!!!!!");
 		return 	memberservice.getMemberList();
 	}
 	
+	//로그인된 전체 회원정보 반환
 	@GetMapping("/getLoginMemberList")
 	public List<Member> getLoginMemberList(Model model) {
 		return adminAllList.getLoginMemberList();
