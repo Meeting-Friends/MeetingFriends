@@ -80,21 +80,20 @@ export default {
 	methods: {
 		async submitForm() {
 			try {
-				const userData = await this.$session.get('userinfo');
+				const userData = this.$session.get('userinfo');
 
-				const response = await createMeetingroom({
-					member: userData,
-					room: {
+				await createMeetingroom({
+					member: JSON.stringify(userData),
+					room: JSON.stringify({
 						title: this.title,
 						maxpeople: this.maxpeople,
 						theme: this.theme,
 						minage: this.minage,
 						maxage: this.maxage,
 						gender: this.gender,
-					},
+					}),
 				});
 				//this.$router.push(response.data);
-				console.log(response);
 			} catch (error) {
 				console.log(error.response.data.message);
 				this.logMessage = error.response.data.message;

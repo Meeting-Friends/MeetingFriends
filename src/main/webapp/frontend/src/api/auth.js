@@ -16,11 +16,6 @@ function signinUser(data) {
 	return instance.post('/signin', data);
 }
 
-// 방생성 API
-function newRoom(data) {
-	return instance.post('/createroom', data);
-}
-
 // 전체회원정보 get API
 function allClient(data) {
 	return instance.get('/getMemberList', data);
@@ -31,11 +26,4 @@ function LogoutUser(userData) {
 	return instance.post('/logout', userData);
 }
 
-export {
-	signupUser,
-	signinUser,
-	memberAgreeUser,
-	newRoom,
-	allClient,
-	LogoutUser,
-};
+export { signupUser, signinUser, memberAgreeUser, allClient, LogoutUser };

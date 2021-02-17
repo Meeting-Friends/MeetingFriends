@@ -52,7 +52,6 @@ export default {
 			}
 		},
 		signup() {
-			console.log('check!');
 			this.$router.push('../Signup');
 		},
 		initForm() {

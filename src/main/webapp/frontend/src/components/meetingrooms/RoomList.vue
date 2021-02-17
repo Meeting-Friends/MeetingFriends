@@ -49,13 +49,18 @@ export default {
 		//채팅방 입장
 		async enterRoom() {
 			try {
+				const userData = this.$session.get('userinfo');
+
 				const MeetingroomData = {
-					title: this.title,
-					maxpeople: this.maxpeople,
-					theme: this.theme,
-					minage: this.minage,
-					maxage: this.maxage,
-					gender: this.gender,
+					member: JSON.stringify(userData),
+					room: JSON.stringify({
+						title: this.title,
+						maxpeople: this.maxpeople,
+						theme: this.theme,
+						minage: this.minage,
+						maxage: this.maxage,
+						gender: this.gender,
+					}),
 				};
 				const { roomInfo } = await enterMeetingroom(MeetingroomData); //room list 생성
 				this.$router.push('/main'); // room 입장 url ??

@@ -8,7 +8,7 @@
 			data-toggle="modal"
 			data-target="#modelId"
 		>
-			회원아이디{{ id }}
+			내정보보기
 		</button>
 
 		<!-- Modal -->
@@ -34,7 +34,6 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<img class="client" src="" alt="회원 이미지" />
 						<InfoClient />
 					</div>
 					<div class="modal-footer">
@@ -56,7 +55,7 @@
 import InfoClient from '@/components/clientinfo/InfoClient.vue';
 
 export default {
-	name: 'Modalclient',
+	name: 'ModalClient',
 	components: {
 		InfoClient,
 	},

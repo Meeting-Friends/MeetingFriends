@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div id="1">
-			<Modalclient />
+			<ModalClient />
 		</div>
 		<div id="2">
 			<ModalNewRoom />
@@ -13,7 +13,7 @@
 
 <script>
 // @ is an alias to /src
-import Modalclient from '@/components/clientinfo/Modalclient.vue';
+import ModalClient from '@/components/clientinfo/ModalClient.vue';
 import ModalNewRoom from '@/components/meetingrooms/ModalNewRoom.vue';
 import RoomList from '@/components/meetingrooms/RoomList.vue';
 import { LogoutUser } from '@/api/auth';
@@ -21,16 +21,16 @@ import { LogoutUser } from '@/api/auth';
 export default {
 	name: 'WaittingRoom',
 	components: {
-		Modalclient,
+		ModalClient,
 		ModalNewRoom,
 		RoomList,
 	},
 	methods: {
 		async logout() {
 			try {
-				const { userData } = await this.$session.get('userinfo');
-				const response = await LogoutUser({ userData }); //로그아웃
-				console.log(response.data);
+				const userData = this.$session.get('userinfo');
+				const response = await LogoutUser(userData); //로그아웃
+				this.$session.remove('userinfo');
 				this.$router.push(response.data);
 			} catch (error) {
 				console.log(error.response.data.message);
