@@ -1445,3 +1445,69 @@ Caused by: java.lang.Error: Unresolved compilation problems:
 [2021-02-17 12:02:54:1036777][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
 [2021-02-17 12:02:54:1036786][restartedMain] INFO  meet.MeetingFriendsApplication - Started MeetingFriendsApplication in 1.677 seconds (JVM running for 1039.633)
 [2021-02-17 12:02:54:1036792][restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[2021-02-17 12:16:14:1837183][Thread-51] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+[2021-02-17 12:16:14:1837192][Thread-51] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2021-02-17 12:16:14:1837222][Thread-51] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Shutdown initiated...
+[2021-02-17 12:16:14:1837258][Thread-51] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-7 - Shutdown completed.
+[2021-02-17 12:16:15:1837924][restartedMain] INFO  meet.MeetingFriendsApplication - Starting MeetingFriendsApplication on DESKTOP-GUJQN1I with PID 34552 (C:\Users\admin\Documents\GitHub\MeetingFriends\target\classes started by admin in C:\Users\admin\Documents\GitHub\MeetingFriends)
+[2021-02-17 12:16:15:1837924][restartedMain] INFO  meet.MeetingFriendsApplication - No active profile set, falling back to default profiles: default
+[2021-02-17 12:16:16:1838485][restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2021-02-17 12:16:16:1838508][restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 1 JPA repository interfaces.
+[2021-02-17 12:16:16:1839121][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+[2021-02-17 12:16:16:1839126][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+[2021-02-17 12:16:16:1839127][restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2021-02-17 12:16:16:1839128][restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+[2021-02-17 12:16:16:1839281][restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2021-02-17 12:16:16:1839281][restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1340 ms
+[2021-02-17 12:16:16:1839369][restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2021-02-17 12:16:16:1839381][restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Starting...
+[2021-02-17 12:16:17:1839459][restartedMain] INFO  com.zaxxer.hikari.pool.PoolBase - HikariPool-8 - Driver does not support get/set network timeout for connections. (oracle.jdbc.driver.T4CConnection.getNetworkTimeout()I)
+[2021-02-17 12:16:17:1839460][restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Start completed.
+[2021-02-17 12:16:17:1839461][restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.OracleDialect
+[2021-02-17 12:16:17:1839461][restartedMain] WARN  o.hibernate.dialect.Oracle9Dialect - HHH000063: The Oracle9Dialect dialect has been deprecated; use either Oracle9iDialect or Oracle10gDialect instead
+[2021-02-17 12:16:17:1839462][restartedMain] WARN  org.hibernate.dialect.OracleDialect - HHH000064: The OracleDialect dialect has been deprecated; use Oracle8iDialect instead
+[2021-02-17 12:16:17:1839608][restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2021-02-17 12:16:17:1839608][restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2021-02-17 12:16:17:1839792][restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2021-02-17 12:16:17:1839865][restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[2021-02-17 12:16:17:1840069][restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2021-02-17 12:16:17:1840090][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+[2021-02-17 12:16:17:1840098][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+[2021-02-17 12:16:17:1840114][restartedMain] INFO  meet.MeetingFriendsApplication - Started MeetingFriendsApplication in 2.381 seconds (JVM running for 1842.961)
+[2021-02-17 12:16:17:1840118][restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[2021-02-17 12:16:22:1844717][http-nio-80-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2021-02-17 12:16:22:1844720][http-nio-80-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2021-02-17 12:16:22:1844728][http-nio-80-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+[2021-02-17 12:16:42:1865071][Thread-59] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+[2021-02-17 12:16:42:1865072][Thread-59] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2021-02-17 12:16:42:1865074][Thread-59] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Shutdown initiated...
+[2021-02-17 12:16:42:1865097][Thread-59] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-8 - Shutdown completed.
+[2021-02-17 12:16:43:1865483][restartedMain] INFO  meet.MeetingFriendsApplication - Starting MeetingFriendsApplication on DESKTOP-GUJQN1I with PID 34552 (C:\Users\admin\Documents\GitHub\MeetingFriends\target\classes started by admin in C:\Users\admin\Documents\GitHub\MeetingFriends)
+[2021-02-17 12:16:43:1865484][restartedMain] INFO  meet.MeetingFriendsApplication - No active profile set, falling back to default profiles: default
+[2021-02-17 12:16:43:1865903][restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2021-02-17 12:16:43:1865927][restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22ms. Found 1 JPA repository interfaces.
+[2021-02-17 12:16:43:1866284][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 80 (http)
+[2021-02-17 12:16:43:1866285][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-80"]
+[2021-02-17 12:16:43:1866285][restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+[2021-02-17 12:16:43:1866286][restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+[2021-02-17 12:16:43:1866359][restartedMain] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2021-02-17 12:16:43:1866359][restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 863 ms
+[2021-02-17 12:16:44:1866456][restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2021-02-17 12:16:44:1866468][restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-9 - Starting...
+[2021-02-17 12:16:44:1866522][restartedMain] INFO  com.zaxxer.hikari.pool.PoolBase - HikariPool-9 - Driver does not support get/set network timeout for connections. (oracle.jdbc.driver.T4CConnection.getNetworkTimeout()I)
+[2021-02-17 12:16:44:1866524][restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-9 - Start completed.
+[2021-02-17 12:16:44:1866525][restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.OracleDialect
+[2021-02-17 12:16:44:1866525][restartedMain] WARN  o.hibernate.dialect.Oracle9Dialect - HHH000063: The Oracle9Dialect dialect has been deprecated; use either Oracle9iDialect or Oracle10gDialect instead
+[2021-02-17 12:16:44:1866526][restartedMain] WARN  org.hibernate.dialect.OracleDialect - HHH000064: The OracleDialect dialect has been deprecated; use Oracle8iDialect instead
+[2021-02-17 12:16:44:1866604][restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2021-02-17 12:16:44:1866604][restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2021-02-17 12:16:44:1866838][restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2021-02-17 12:16:44:1867007][restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[2021-02-17 12:16:44:1867202][restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+[2021-02-17 12:16:44:1867212][restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-80"]
+[2021-02-17 12:16:44:1867219][restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 80 (http) with context path ''
+[2021-02-17 12:16:44:1867242][restartedMain] INFO  meet.MeetingFriendsApplication - Started MeetingFriendsApplication in 1.872 seconds (JVM running for 1870.09)
+[2021-02-17 12:16:44:1867246][restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+[2021-02-17 12:16:51:1873707][http-nio-80-exec-1] INFO  o.a.c.c.C.[.[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2021-02-17 12:16:51:1873709][http-nio-80-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2021-02-17 12:16:51:1873714][http-nio-80-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms

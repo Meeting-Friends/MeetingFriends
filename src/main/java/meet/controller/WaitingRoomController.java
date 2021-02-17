@@ -37,6 +37,8 @@ public class WaitingRoomController {
 		Room room = mapper.readValue(obj.get("room").toString(), Room.class);
 		Member member = mapper.readValue(obj.get("member").toString(), Member.class);
 		
+		System.out.println(room);
+		
 		room.setRId(Integer.toString((int)(Math.random() * 10000)));	//방id 랜덤으로 생성
 		room.getRoommember().add(member);
 		model.addAttribute("roominfo",room);	

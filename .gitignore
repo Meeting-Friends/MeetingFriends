@@ -18,7 +18,7 @@ node_modules
 *.iws
 *.iml
 *.ipr
-
+!**/src/main/resources/logs/logback.log
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

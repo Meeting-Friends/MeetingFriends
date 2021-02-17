@@ -12,7 +12,7 @@
 				</div>
 				<div>
 					<label for="maxpeople">최대 인원 </label>
-					<select id="maxpeople" name="maxpeople" v-model="mexpeople">
+					<select id="maxpeople" name="maxpeople" v-model="maxpeople">
 						<option value="2">2명</option>
 						<option value="3">3명</option>
 						<option value="4">4명</option>
