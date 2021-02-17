@@ -37,14 +37,13 @@ public class WaitingRoomController {
 		Room room = mapper.readValue(obj.get("room").toString(), Room.class);
 		Member member = mapper.readValue(obj.get("member").toString(), Member.class);
 		
-		System.out.println(room);
-		
 		room.setRId(Integer.toString((int)(Math.random() * 10000)));	//방id 랜덤으로 생성
 		room.getRoommember().add(member);
 		model.addAttribute("roominfo",room);	
 		adminAllList.getRoomList().add(room);
 
-		return "redirect:localhost:3333/"+room.getRId();	
+
+		return "redirect:https://192.168.35.115:3333/room/"+room.getRId();	
 	}
 	
 	@GetMapping("/entranceroom")
@@ -59,7 +58,7 @@ public class WaitingRoomController {
 				r.getRoommember().add(member);	//입장하려는 방을 찾아서 member리스트에 추가
 				model.addAttribute("roominfo",room);
 
-				return "redirect:localhost:3333/"+room.getRId();	//room id와 함께 전송하도록 수정!!!!
+				return "redirect:https://192.168.35.115:3333/room/"+room.getRId();	//room id와 함께 전송하도록 수정!!!!
 			}
 		}
 		return "forward:/frontend/src/views/WaittingRoom.vue";	
