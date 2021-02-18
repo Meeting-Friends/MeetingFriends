@@ -58,7 +58,7 @@
 
 <script>
 import { createMeetingroom } from '@/api/meetingrooms';
-//import { sendInfoToMeetingroom } from '@/api/meetingrooms';
+import { sendInfoToMeetingroom } from '@/api/meetingrooms';
 
 export default {
 	name: 'NewRoom',
@@ -99,20 +99,17 @@ export default {
 				console.log(error.response.data.message);
 				this.logMessage = error.response.data.message;
 			} finally {
-				// await sendInfoToMeetingroom(this.desturl.data, {
-				// 	member: JSON.stringify(this.userData),
-				// 	room: JSON.stringify({
-				// 		title: this.title,
-				// 		maxpeople: this.maxpeople,
-				// 		theme: this.theme,
-				// 		minage: this.minage,
-				// 		maxage: this.maxage,
-				// 		gender: this.gender,
-				// 	}),
-				// });
-				console.log(this.desturl);
-				console.log(this.desturl.data);
-				window.location.href = this.desturl.data;
+				await sendInfoToMeetingroom(this.desturl.data, {
+					member: JSON.stringify(this.userData),
+					room: JSON.stringify({
+						title: this.title,
+						maxpeople: this.maxpeople,
+						theme: this.theme,
+						minage: this.minage,
+						maxage: this.maxage,
+						gender: this.gender,
+					}),
+				});
 				this.initForm();
 			}
 		},
