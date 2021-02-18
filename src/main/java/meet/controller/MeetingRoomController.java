@@ -4,10 +4,12 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,7 +22,7 @@ import meet.model.domain.entity.Member;
 import meet.service.MemberService;
 
 @SessionAttributes({"userinfo","roominfo"})
-@Controller(value="MeetingRoomController")
+@RestController(value="MeetingRoomController")
 public class MeetingRoomController {
 	@Autowired
 	AdminAllList adminAllList;
@@ -28,7 +30,7 @@ public class MeetingRoomController {
 	MemberService memberservice;
 	
 	//방나가기 버튼 클릭시 실행
-	@GetMapping("/exitroom/room/${roomid}/user/${userEmail}")		//http://192.168.35.115:80/exitroom/room/${roomid}/user/${userEmail}
+	@GetMapping("/exitroom/room/{roomid}/user/{userEmail}")		//http://192.168.35.115:80/exitroom/room/${roomid}/user/${userEmail}
 	public String exitRoom(@PathVariable String roomid,@PathVariable String userEmail, Model model) throws JsonMappingException, JsonProcessingException {
 				
 		Room temproom=null;
@@ -81,7 +83,7 @@ public class MeetingRoomController {
 		return "방정보 수정완료!";
 	}
 	
-	@GetMapping("/room/${roomid}")	//get(`http://localhost:80/room/${ROOM_ID}`)
+	@GetMapping("/room/{roomid}")	//get(`http://localhost:80/room/${ROOM_ID}`)
 	public String getRoomInfo(@PathVariable String roomid, Model model) throws JsonMappingException, JsonProcessingException {
 
 		ObjectMapper mapper = new ObjectMapper();
@@ -97,11 +99,12 @@ public class MeetingRoomController {
 		return mapper.writeValueAsString(temproom);
 	}
 	
-	@GetMapping("/user/${userEmail}")	//.get(`http://localhost:80/user/${vm.$data.userEmail}`)
+	@GetMapping("/user/{userEmail}")	//.get(`http://localhost:80/user/${vm.$data.userEmail}`)
 	public String getUserInfo(@PathVariable String userEmail, Model model) throws JsonMappingException, JsonProcessingException {
 		
-		ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper();		
+		Member m = memberservice.getMemberInfo(userEmail);
 		
-		return mapper.writeValueAsString(memberservice.getMemberInfo(userEmail));
+		return mapper.writeValueAsString(m);
 	}
 }
