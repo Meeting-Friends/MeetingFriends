@@ -58,6 +58,7 @@
 
 <script>
 import { createMeetingroom } from '@/api/meetingrooms';
+//import { sendInfoToMeetingroom } from '@/api/meetingrooms';
 
 export default {
 	name: 'NewRoom',
@@ -70,6 +71,8 @@ export default {
 			maxage: '',
 			gender: '',
 			logMessage: '',
+			desturl: '',
+			userdata: '',
 		};
 	},
 	computed: {
@@ -80,10 +83,9 @@ export default {
 	methods: {
 		async submitForm() {
 			try {
-				const userData = this.$session.get('userinfo');
-
-				await createMeetingroom({
-					member: JSON.stringify(userData),
+				this.userData = this.$session.get('userinfo');
+				this.desturl = await createMeetingroom({
+					member: JSON.stringify(this.userData),
 					room: JSON.stringify({
 						title: this.title,
 						maxpeople: this.maxpeople,
@@ -93,13 +95,34 @@ export default {
 						gender: this.gender,
 					}),
 				});
-				//this.$router.push(response.data);
 			} catch (error) {
 				console.log(error.response.data.message);
 				this.logMessage = error.response.data.message;
 			} finally {
+				// await sendInfoToMeetingroom(this.desturl.data, {
+				// 	member: JSON.stringify(this.userData),
+				// 	room: JSON.stringify({
+				// 		title: this.title,
+				// 		maxpeople: this.maxpeople,
+				// 		theme: this.theme,
+				// 		minage: this.minage,
+				// 		maxage: this.maxage,
+				// 		gender: this.gender,
+				// 	}),
+				// });
+				console.log(this.desturl);
+				console.log(this.desturl.data);
+				window.location.href = this.desturl.data;
 				this.initForm();
 			}
+		},
+		initForm() {
+			this.title = '';
+			this.maxpeople = '';
+			this.theme = '';
+			this.minage = '';
+			this.maxage = '';
+			this.gender = '';
 		},
 	},
 };

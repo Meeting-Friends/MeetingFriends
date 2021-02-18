@@ -19,7 +19,7 @@ public class MeetingRoomController {
 	AdminAllList adminAllList;
 
 	//방나가기 버튼 클릭시 실행
-	@GetMapping("/exitroom")
+	@GetMapping("/exitroom")		//http://192.168.35.115:80/exitroom/room/${roomid}/user/${userEmail}
 	public String exitRoom(@ModelAttribute("room") Room r, @ModelAttribute("member")Member m, Model model) {
 		Room temproom=null;
 		for(Room r2 : adminAllList.getRoomList()) {	//요청받은 r의 방id와 같은 방 객체 찾기

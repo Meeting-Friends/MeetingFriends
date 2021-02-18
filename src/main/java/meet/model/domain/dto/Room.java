@@ -23,11 +23,11 @@ import meet.model.domain.entity.Member;
 @Scope("Prototype")
 public class Room {
 	private String rId;	//방 id
-	private String title;
-	private int maxpeople;
-	private String theme;
-	private int minage;
-	private int maxage;
-	private String gender;
+	private String title;	//방제목
+	private int maxpeople;	//최대인원
+	private String theme;	//테마
+	private int minage;	//최소연령
+	private int maxage;	//최대연령
+	private String gender;	//성별
 	private List<Member> roommember=new ArrayList<Member>();
 }
