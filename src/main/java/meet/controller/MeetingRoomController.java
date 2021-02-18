@@ -98,7 +98,7 @@ public class MeetingRoomController {
 	}
 	
 	@GetMapping("/user/${userEmail}")	//.get(`http://localhost:80/user/${vm.$data.userEmail}`)
-	public Room getUserInfo(@PathVariable String userEmail, Model model) throws JsonMappingException, JsonProcessingException {
+	public String getUserInfo(@PathVariable String userEmail, Model model) throws JsonMappingException, JsonProcessingException {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
