@@ -23,6 +23,11 @@ public class MemberServiceImpl implements MemberService{
 		return (List<Member>) mrepository.findAll();
 	}
 
+	//사용자 정보 반환하는 메소드
+	public Member getMemberInfo(String id){
+		return mrepository.findById(id).get();
+	}
+
 	//회원가입 가능 여부 체크 메소드
 	public boolean checkExistingMember(String id) {	
 		Optional<Member> findMember = mrepository.findById(id);
@@ -34,7 +39,7 @@ public class MemberServiceImpl implements MemberService{
 			return true;
 		}
 	}
-	
+
 	//회원가입 가능 체크후 호출되는 메소드로서 db member테이블에 저장하기 위한 메소드
 	public void insertMember(Member member) {
 		mrepository.save(member);
@@ -62,7 +67,7 @@ public class MemberServiceImpl implements MemberService{
 	//db의 member테이블을 수정하기 위한 메소드
 	public void updateMember(Member member){	
 		Member findMember = mrepository.findById(member.getId()).get();
-		
+
 		//nickname, phonenumber, pw만 업데이트 가능
 		findMember.setNickname(member.getNickname());
 		findMember.setPhonenumber(member.getPhonenumber());

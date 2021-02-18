@@ -41,7 +41,7 @@ export default {
 		async getAllRooms() {
 			try {
 				const response = await fetchMeetingRooms();
-				console.log(response);
+				console.log(response.data);
 				this.model = response.data;
 				//	this.logMessage = `${model.title} 채팅방이 생성되었습니다.`;
 			} catch (error) {

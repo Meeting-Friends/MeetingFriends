@@ -1,6 +1,6 @@
 // 학습 노트 조작과 관련된 CRUD API 함수 파일
 import { instance } from './index';
-//import { meetingrooms } from './index';
+import { meetingrooms } from './index';
 
 // 채팅룸 리스트 데이터 조회 API
 function fetchMeetingRooms() {
@@ -24,7 +24,7 @@ function deleteMeetingroom(meetingroomId) {
 
 //webrtc로 방정보, 회원정보 전송
 function sendInfoToMeetingroom(url, Data) {
-	instance.post(url, Data);
+	meetingrooms.post(url, Data);
 }
 export {
 	fetchMeetingRooms,

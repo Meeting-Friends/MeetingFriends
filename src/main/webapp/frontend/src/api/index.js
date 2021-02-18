@@ -8,13 +8,13 @@ function createInstance() {
 }
 
 // 엑시오스 초기화 함수
-function createInstanceWithAuth(url) {
+function createInstanceWithAuth() {
 	const instance = axios.create({
 		//	baseURL: `${process.env.VUE_APP_API_URL}${url}`,
-		baseURL: `${url}`,
+		baseURL: '',
 	});
 	return setInterceptors(instance);
 }
 
 export const instance = createInstance();
-export const meetingrooms = createInstanceWithAuth('meetingrooms');
+export const meetingrooms = createInstanceWithAuth();
