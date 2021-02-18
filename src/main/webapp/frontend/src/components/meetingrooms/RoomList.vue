@@ -59,7 +59,7 @@ export default {
 					room: JSON.stringify(value),
 				};
 				const desturl = await enterMeetingroom(MeetingroomData); //room list 생성
-				await sendInfoToMeetingroom(desturl.data, MeetingroomData);
+				await sendInfoToMeetingroom(desturl.data, userData.id);
 				//	this.logMessage = `${roomInfo.title} 채팅방이 생성되었습니다.`;
 			} catch (error) {
 				console.log(error);

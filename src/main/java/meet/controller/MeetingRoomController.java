@@ -21,6 +21,7 @@ import meet.model.domain.dto.Room;
 import meet.model.domain.entity.Member;
 import meet.service.MemberService;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @SessionAttributes({"userinfo","roominfo"})
 @RestController(value="MeetingRoomController")
 public class MeetingRoomController {
@@ -51,7 +52,6 @@ public class MeetingRoomController {
 		if(temproom.getRoommember().size()==1) {	//방에 남은사람이 1명일때
 			adminAllList.getRoomList().remove(temproom);	//방 리스트에서 방 제거
 		}
-		
 		
 		model.addAttribute("roomid", null);	//본인 세션의 roomid null로 수정
 		return "waittingroom";

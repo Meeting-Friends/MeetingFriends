@@ -99,17 +99,10 @@ export default {
 				console.log(error.response.data.message);
 				this.logMessage = error.response.data.message;
 			} finally {
-				await sendInfoToMeetingroom(this.desturl.data, {
-					member: JSON.stringify(this.userData),
-					room: JSON.stringify({
-						title: this.title,
-						maxpeople: this.maxpeople,
-						theme: this.theme,
-						minage: this.minage,
-						maxage: this.maxage,
-						gender: this.gender,
-					}),
-				});
+				await sendInfoToMeetingroom(
+					this.desturl.data,
+					this.$session.get('userinfo').id,
+				);
 				this.initForm();
 			}
 		},
