@@ -86,6 +86,12 @@ public class WaitingRoomController {
 		//				mv.addObject("entrancememnum",r.getRoommember().size());
 		//				list.add(mv);
 		//			}
+		
+		for(Room r:adminAllList.getRoomList()) {
+			if(r.getRoommember().size()<1) {	//방에 남은사람이 1명 미만일때
+				adminAllList.getRoomList().remove(r);	//방 리스트에서 방 제거			
+			}			
+		}
 		System.out.println(adminAllList.getRoomList());
 		return adminAllList.getRoomList(); 
 	}

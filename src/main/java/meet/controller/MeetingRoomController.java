@@ -2,7 +2,6 @@ package meet.controller;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,6 @@ import meet.model.domain.dto.Room;
 import meet.model.domain.entity.Member;
 import meet.service.MemberService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @SessionAttributes({"userinfo","roominfo"})
 @RestController(value="MeetingRoomController")
 public class MeetingRoomController {
@@ -31,6 +29,7 @@ public class MeetingRoomController {
 	MemberService memberservice;
 	
 	//방나가기 버튼 클릭시 실행
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping("/exitroom/room/{roomid}/user/{userEmail}")		//http://192.168.35.115:80/exitroom/room/${roomid}/user/${userEmail}
 	public String exitRoom(@PathVariable String roomid,@PathVariable String userEmail, Model model) throws JsonMappingException, JsonProcessingException {
 				
@@ -42,14 +41,14 @@ public class MeetingRoomController {
 			}
 		}
 
-		for(Member m:temproom.getRoommember()) {	//방의 멤버리스트에서 나가려는 회원을 제거
+		for(Member m : temproom.getRoommember()) {	//방의 멤버리스트에서 나가려는 회원을 제거
 			if(m.getId().equals(userEmail)) {
 				temproom.getRoommember().remove(m);
 				break;
 			}
 		}
 		
-		if(temproom.getRoommember().size()==1) {	//방에 남은사람이 1명일때
+		if(temproom.getRoommember().size()<1) {	//방에 남은사람이 1명 미만일때
 			adminAllList.getRoomList().remove(temproom);	//방 리스트에서 방 제거
 		}
 		
@@ -58,13 +57,14 @@ public class MeetingRoomController {
 	}
 
 	//webrtc 방수정 버튼 클릭시 실행
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping("/changeroominfo")
 	public String changeRoomInfo(@RequestBody JSONObject obj, Model model) throws JsonMappingException, JsonProcessingException {
 
 		ObjectMapper mapper = new ObjectMapper();
-		Room room = mapper.readValue(obj.get("room").toString(), Room.class);
-		Member member = mapper.readValue(obj.get("member").toString(), Member.class);
-		
+		System.out.println(obj);
+		Room room = mapper.readValue(obj.toString(), Room.class);
+		System.out.println(room);
 		Room temproom=null;
 		for(Room r2:adminAllList.getRoomList()) {	//요청받은 r의 방id와 같은 방 객체 찾기
 			if(r2.getRId().equals(room.getRId())) {
@@ -73,16 +73,15 @@ public class MeetingRoomController {
 			}
 		}
 		temproom.setTitle(room.getTitle());
-		temproom.setMaxage(room.getMaxage());
-		temproom.setMinage(room.getMinage());
 		temproom.setTheme(room.getTheme());
-		temproom.setMaxpeople(room.getMaxage());
+		temproom.setMaxPeople(room.getMaxPeople());
 		
 		model.addAttribute("roominfo",temproom);
 		
 		return "방정보 수정완료!";
 	}
-	
+
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping("/room/{roomid}")	//get(`http://localhost:80/room/${ROOM_ID}`)
 	public String getRoomInfo(@PathVariable String roomid, Model model) throws JsonMappingException, JsonProcessingException {
 
@@ -98,13 +97,17 @@ public class MeetingRoomController {
 		
 		return mapper.writeValueAsString(temproom);
 	}
-	
+
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping("/user/{userEmail}")	//.get(`http://localhost:80/user/${vm.$data.userEmail}`)
 	public String getUserInfo(@PathVariable String userEmail, Model model) throws JsonMappingException, JsonProcessingException {
 		
 		ObjectMapper mapper = new ObjectMapper();		
 		Member m = memberservice.getMemberInfo(userEmail);
-		
+		m.setPhonenumber(null);
+		m.setName(null);
+		m.setPw(null);
+		m.setQna(null);
 		return mapper.writeValueAsString(m);
 	}
 }

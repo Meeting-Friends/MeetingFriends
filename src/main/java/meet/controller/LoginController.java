@@ -30,9 +30,17 @@ public class LoginController{
 		
 		if(newmember!=null) {	//회원정보가 있다면	
 			if(newmember.getId().equals("admin")) {	//관리자일때
+				newmember.setPhonenumber(null);
+				newmember.setName(null);
+				newmember.setPw(null);
+				newmember.setQna(null);
 				jsonObj.put("memberinfo", newmember);
 				jsonObj.put("desturl", "admin");
 			}else {	//일반회원일때
+				newmember.setPhonenumber(null);
+				newmember.setName(null);
+				newmember.setPw(null);
+				newmember.setQna(null);
 				adminAllList.getLoginMemberList().add(newmember);					
 				model.addAttribute("userinfo",model);	//회원 개인 session에 id 등록		
 			//	servletContext.setAttribute("loginmemberlist", adminAllList.getLoginmemberlist());	//로그인된 회원 정보들 리스트를 application scope에서 공유

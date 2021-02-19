@@ -3,7 +3,6 @@ package meet.model.domain.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -24,10 +23,8 @@ import meet.model.domain.entity.Member;
 public class Room {
 	private String rId;	//방 id
 	private String title;	//방제목
-	private int maxpeople;	//최대인원
+	private int maxPeople;	//최대인원
 	private String theme;	//테마
-	private int minage;	//최소연령
-	private int maxage;	//최대연령
 	private String gender;	//성별
 	private List<Member> roommember=new ArrayList<Member>();
 }

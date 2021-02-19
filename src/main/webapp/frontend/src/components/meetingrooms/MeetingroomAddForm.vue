@@ -28,23 +28,18 @@
 						<option value="수다">수다방</option>
 						<option value="먹방">먹방</option>
 						<option value="운동">운동방</option>
-						<option value="게임">게임방</option>
+						<option value="방구석 콘서트">방구석 콘서트</option>
+						<option value="공부">공부방</option>
+						<option value="클럽하우스">클럽하우스</option>
 						<option value="기타">기타방</option>
 					</select>
-				</div>
-				<div>
-					<label for="minage">최소연령 </label>
-					<input id="minage" type="text" v-model="minage" />
-				</div>
-				<div>
-					<label for="maxage">최대연령 </label>
-					<input id="maxage" type="text" v-model="maxage" />
 				</div>
 				<div>
 					<label for="gender">성별 </label>
 					<select id="gender" name="gender" v-model="gender">
 						<option value="남자">남자</option>
 						<option value="여자">여자</option>
+						<option value="전체">전체</option>
 					</select>
 				</div>
 				<button type="submit" class="btn">채팅방 만들기</button>
@@ -65,10 +60,8 @@ export default {
 	data() {
 		return {
 			title: '',
-			maxpeople: '',
+			maxPeople: '',
 			theme: '',
-			minage: '',
-			maxage: '',
 			gender: '',
 			logMessage: '',
 			desturl: '',
@@ -88,10 +81,8 @@ export default {
 					member: JSON.stringify(this.userData),
 					room: JSON.stringify({
 						title: this.title,
-						maxpeople: this.maxpeople,
+						maxPeople: this.maxPeople,
 						theme: this.theme,
-						minage: this.minage,
-						maxage: this.maxage,
 						gender: this.gender,
 					}),
 				});
@@ -108,10 +99,8 @@ export default {
 		},
 		initForm() {
 			this.title = '';
-			this.maxpeople = '';
+			this.maxPeople = '';
 			this.theme = '';
-			this.minage = '';
-			this.maxage = '';
 			this.gender = '';
 		},
 	},
