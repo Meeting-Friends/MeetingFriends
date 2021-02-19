@@ -25,6 +25,7 @@ public class MemberServiceImpl implements MemberService{
 
 	//사용자 정보 반환하는 메소드
 	public Member getMemberInfo(String id){
+		System.out.println(mrepository.findById(id).get());
 		return mrepository.findById(id).get();
 	}
 
@@ -65,14 +66,20 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	//db의 member테이블을 수정하기 위한 메소드
-	public void updateMember(Member member){	
-		Member findMember = mrepository.findById(member.getId()).get();
-
-		//nickname, phonenumber, pw만 업데이트 가능
-		findMember.setNickname(member.getNickname());
-		findMember.setPhonenumber(member.getPhonenumber());
-		findMember.setPw(member.getPw());
-		mrepository.save(findMember);
+	public boolean updateMember(Member member){	
+		try {
+			Member findMember = mrepository.findById(member.getId()).get();
+			
+			//nickname, phonenumber, pw만 업데이트 가능
+			findMember.setNickname(member.getNickname());
+			findMember.setPhonenumber(member.getPhonenumber());
+			findMember.setPw(member.getPw());
+			mrepository.save(findMember);
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	public void deleteMember(Member member) {
 		mrepository.deleteById(member.getId());

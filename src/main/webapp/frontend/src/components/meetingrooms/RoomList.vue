@@ -11,7 +11,7 @@
 				<th>성별</th>
 				<th>입장</th>
 			</tr>
-			<tr v-for="value in model" v-bind:key="value.title">
+			<tr v-for="value in model" v-bind:key="value.rid">
 				<td>{{ value.rid }}</td>
 				<td>{{ value.title }}</td>
 				<td>{{ value.maxpeople }}</td>

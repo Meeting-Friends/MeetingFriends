@@ -1,13 +1,13 @@
 package meet.controller;
 
 import java.util.List;
-
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,44 +58,47 @@ public class WaitingRoomController {
 		Member member = mapper.readValue(obj.get("member").toString(), Member.class);
 
 		for(Room r : adminAllList.getRoomList()){
-			if(room.getRId().equals(r.getRId())) {
+			if(room.getRId().equals(r.getRId()) && room.getGender().equals(member.getGender())) {
 				r.getRoommember().add(member);	//입장하려는 방을 찾아서 member리스트에 추가
 				model.addAttribute("roominfo",room);
 
 				return "https://192.168.25.51:3333/room/"+room.getRId();	//room id와 함께 전송하도록 수정!!!!
 			}
 		}
+		
 		return "waittingroom";	
 	}
 
 	//방들 정보 반환
 	@GetMapping("/getroomlist")
 	public List<Room> getRoomList() {	//반환타입 수정 가능성 확인!!!!
-		//			List<ModelAndView> list = new ArrayList<ModelAndView>();
-		//			
-		//			for(Room r : adminAllList.getRoomList()) {
-		//				ModelAndView mv = new ModelAndView("getroomlist");
-		//				mv.addObject("r_id", r.getR_id());
-		//				mv.addObject("roomhost_id", r.getRoomhost_id());
-		//				mv.addObject("r_title", r.getTitle());
-		//				mv.addObject("maxpeople",r.getMaxpeople());
-		//				mv.addObject("gender",r.getGender());
-		//				mv.addObject("minage",r.getMinage());
-		//				mv.addObject("maxage",r.getMaxage());
-		//				mv.addObject("theme",r.getTheme());
-		//				mv.addObject("entrancememnum",r.getRoommember().size());
-		//				list.add(mv);
-		//			}
-		
 		for(Room r:adminAllList.getRoomList()) {
 			if(r.getRoommember().size()<1) {	//방에 남은사람이 1명 미만일때
 				adminAllList.getRoomList().remove(r);	//방 리스트에서 방 제거			
 			}			
 		}
 		System.out.println(adminAllList.getRoomList());
+		
 		return adminAllList.getRoomList(); 
 	}
-
+	
+	//회원 자신 정보 반환
+	@GetMapping("/getmyinfo/{id}")	
+	public String getMyInfo(@PathVariable String id, Model model) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();		
+		return mapper.writeValueAsString(memberservice.getMemberInfo(id));
+	}
+	
+	////회원 자신 정보 수정
+	@GetMapping("/updatemyinfo")	
+	public String updateMyInfo(Member member, Model model){
+		if(memberservice.updateMember(member)) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
 	//로그아웃 버튼 클릭시 실행
 	@PostMapping("/logout")
 	public String Logout(@RequestBody Member member, SessionStatus status) {
@@ -110,6 +113,7 @@ public class WaitingRoomController {
 			loginmemberlist.remove(loginmemberlist.stream().filter(m->m.getId().equals(id)).collect(Collectors.toList()).get(0));		
 			servletContext.setAttribute("loginmemberlist",loginmemberlist);
 		 */
+		
 		return "signin";
 	}
 }

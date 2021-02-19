@@ -17,8 +17,18 @@ function signinUser(data) {
 }
 
 // 전체회원정보 get API
-function allClient(data) {
-	return instance.get('/getMemberList', data);
+function allClient() {
+	return instance.get('/getMemberList');
+}
+
+// 내정보 get API
+function getMyInfo(data) {
+	return instance.get(`/getmyinfo/${data}`);
+}
+
+//회원 정보 수정
+function updateUser(userData) {
+	return instance.post('updataMyInfo', userData);
 }
 
 //로그아웃
@@ -26,4 +36,12 @@ function LogoutUser(userData) {
 	return instance.post('/logout', userData);
 }
 
-export { signupUser, signinUser, memberAgreeUser, allClient, LogoutUser };
+export {
+	signupUser,
+	signinUser,
+	memberAgreeUser,
+	allClient,
+	LogoutUser,
+	getMyInfo,
+	updateUser,
+};

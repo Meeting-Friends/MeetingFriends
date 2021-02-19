@@ -11,8 +11,8 @@
 					</p>
 				</div>
 				<div>
-					<label for="maxpeople">최대 인원 </label>
-					<select id="maxpeople" name="maxpeople" v-model="maxpeople">
+					<label for="maxPeople">최대 인원 </label>
+					<select id="maxPeople" name="maxPeople" v-model="maxPeople">
 						<option value="2">2명</option>
 						<option value="3">3명</option>
 						<option value="4">4명</option>
@@ -90,6 +90,9 @@ export default {
 				console.log(error.response.data.message);
 				this.logMessage = error.response.data.message;
 			} finally {
+				if (this.desturl == 'waittingroom') {
+					alert('찾으려는 방이 없거나 방 설정 성별과 본인의 성별이 다릅니다.');
+				}
 				await sendInfoToMeetingroom(
 					this.desturl.data,
 					this.$session.get('userinfo').id,

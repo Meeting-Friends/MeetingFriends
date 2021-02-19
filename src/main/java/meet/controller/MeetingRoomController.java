@@ -53,6 +53,7 @@ public class MeetingRoomController {
 		}
 		
 		model.addAttribute("roomid", null);	//본인 세션의 roomid null로 수정
+		
 		return "waittingroom";
 	}
 
@@ -108,6 +109,7 @@ public class MeetingRoomController {
 		m.setName(null);
 		m.setPw(null);
 		m.setQna(null);
+		
 		return mapper.writeValueAsString(m);
 	}
 }

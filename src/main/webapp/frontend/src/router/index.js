@@ -37,6 +37,22 @@ const router = new VueRouter({
 			//	meta: { auth: true },
 		},
 		{
+			path: '/qanda',
+			name: 'QandA',
+			component: () => import('@/components/qanda/QandA.vue'),
+		},
+
+		{
+			path: '/qanda/detail/:contentId',
+			name: 'QandADetail',
+			component: () => import('@/components/qanda/QandADetail.vue'),
+		},
+		{
+			path: '/qanda/create/:contentId?',
+			name: 'Create',
+			component: () => import('@/components/qanda/Create.vue'),
+		},
+		{
 			path: '*',
 			component: () => import('@/views/NotFoundPage.vue'),
 		},

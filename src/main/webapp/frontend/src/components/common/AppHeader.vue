@@ -1,9 +1,7 @@
 <template>
 	<header>
 		<div>
-			<router-link :to="logoLink" class="logo">
-				MeetingFriends
-			</router-link>
+			<router-link :to="logoLink" class="logo"> MeetingFriends </router-link>
 		</div>
 		<div class="navigations">
 			<template v-if="isUserSignin">
@@ -12,6 +10,7 @@
 			</template>
 
 			<template>
+				<router-link to="/qanda">Q and A</router-link>
 				<router-link to="/signin">로그인</router-link>
 				<router-link to="/signup">회원가입</router-link>
 			</template>

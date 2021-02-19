@@ -14,7 +14,7 @@ public interface MemberService {
 
 	Member checkMember(String id,String pw);
 
-	void updateMember(Member member);
+	boolean updateMember(Member member);
 
 	void deleteMember(Member member);
 
