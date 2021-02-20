@@ -31,7 +31,11 @@ public class Member {
 	private String classification;	//권한(ex. 관리자, 일반회원)
 	
 	@OneToMany(mappedBy="uId")	//1:다 관계
-	private List<QnA> qna;
+	private List<Content> content;
+	
+
+	@OneToMany(mappedBy="uId")	//1:다 관계
+	private List<Comment> comment;
 //	private String local;
 //	private String picturepath;
 }

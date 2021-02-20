@@ -7,42 +7,42 @@ function fetchqandalist() {
 }
 
 //Question 추가하는 API
-function addQuestion(qandaData) {
-	return qanda.post('/', qandaData);
+function addQuestion(data) {
+	return qanda.post('/insertqna', data);
 }
 
 //Question 수정하는 API
-function modifyQuestion(qandaData) {
-	return qanda.post('modifyqanda', qandaData);
+function modifyQuestion(data) {
+	return qanda.post('/modifyqna', data);
 }
 
 //Question 찾는하는 API
-function findQuestion(qandaData) {
-	return qanda.get('findqanda', qandaData);
+function findQuestion(data) {
+	return qanda.get(`/findqna/${data.contentId}`);
 }
 
 //Question 삭제하는 API
-function deleteQuestion(userId) {
-	return qanda.delete(userId);
+function deleteQuestion(data) {
+	return qanda.delete(`/deleteqna/${data.contentId}`);
 }
 
 //Answer 추가하는 API
-function addAnswer(qandaData) {
-	return qanda.post('/', qandaData);
+function addAnswer(data) {
+	return qanda.post('/insertanswer', data);
 }
 
 //Answer 삭제하는 API
-function deleteAnswer(userId) {
-	return qanda.delete(userId);
+function deleteAnswer(data) {
+	return qanda.delete(data);
 }
 
 //Answer 찾는 API
-function findAnswer(qandaData) {
-	return qanda.findAnswer('findAnswer', qandaData);
+function findAnswer(data) {
+	return qanda.findAnswer(`/findanswer/${data.commentId}`);
 }
 //Answer 수정하는 API
-function updateAnswer(qandaData) {
-	return qanda.post('updateanswer', qandaData);
+function updateAnswer(data) {
+	return qanda.post('updateanswer', data);
 }
 
 export {

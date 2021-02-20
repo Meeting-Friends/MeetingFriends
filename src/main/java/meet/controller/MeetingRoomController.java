@@ -63,9 +63,7 @@ public class MeetingRoomController {
 	public String changeRoomInfo(@RequestBody JSONObject obj, Model model) throws JsonMappingException, JsonProcessingException {
 
 		ObjectMapper mapper = new ObjectMapper();
-		System.out.println(obj);
 		Room room = mapper.readValue(obj.toString(), Room.class);
-		System.out.println(room);
 		Room temproom=null;
 		for(Room r2:adminAllList.getRoomList()) {	//요청받은 r의 방id와 같은 방 객체 찾기
 			if(r2.getRId().equals(room.getRId())) {
@@ -108,7 +106,8 @@ public class MeetingRoomController {
 		m.setPhonenumber(null);
 		m.setName(null);
 		m.setPw(null);
-		m.setQna(null);
+		m.setContent(null);
+		m.setComment(null);
 		
 		return mapper.writeValueAsString(m);
 	}
