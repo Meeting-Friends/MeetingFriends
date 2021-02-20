@@ -1,6 +1,7 @@
 package meet.model.domain.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -16,20 +17,19 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
-public class Comment {	
+public class Comments {	
 	@Id @GeneratedValue
 	private String commentId;
 	private String context;
 	private String createdAt;
 	private String updatedAt;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="m_id")
 	private Member uId;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="content_id")
 	private Content contentId;
 }

@@ -2,7 +2,6 @@ package meet.model.domain.entity;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -31,11 +30,8 @@ public class Member {
 	private String classification;	//권한(ex. 관리자, 일반회원)
 	
 	@OneToMany(mappedBy="uId")	//1:다 관계
-	private List<Content> content;
+	private List<Content> content;	
 	
-
 	@OneToMany(mappedBy="uId")	//1:다 관계
-	private List<Comment> comment;
-//	private String local;
-//	private String picturepath;
+	private List<Comments> comment;
 }

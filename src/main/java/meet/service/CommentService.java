@@ -2,17 +2,17 @@ package meet.service;
 
 import java.util.List;
 
-import meet.model.domain.entity.Comment;
+import meet.model.domain.entity.Comments;
 
 public interface CommentService {
 	
-	List<Comment> getCommentList();	//전체 Comment들 리스트 가져오기
+	List<Comments> getCommentList();	//전체 Comment들 리스트 가져오기
 	
-	Comment getComment(String id);
+	Comments getComment(String id);
 	
-	boolean insertComment(Comment comment);
+	boolean insertComment(Comments comment);
 
-	boolean updateComment(Comment comment);
+	boolean updateComment(Comments comment);
 
 	boolean deleteComment(String id);
 }

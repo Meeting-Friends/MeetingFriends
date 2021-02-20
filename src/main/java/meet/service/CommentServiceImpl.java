@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import meet.dao.CommentRepository;
-import meet.model.domain.entity.Comment;
+import meet.model.domain.entity.Comments;
 
 @Service
 public class CommentServiceImpl implements CommentService{
@@ -16,11 +16,11 @@ public class CommentServiceImpl implements CommentService{
 	private CommentRepository commentrepository;
 
 	//Comment리스트들을 반환하는 메소드
-	public List<Comment> getCommentList(){
-		return (List<Comment>) commentrepository.findAll();
+	public List<Comments> getCommentList(){
+		return (List<Comments>) commentrepository.findAll();
 	}
 
-	public Comment getComment(String id){	
+	public Comments getComment(String id){	
 		try {
 			return commentrepository.findById(id).get();			
 		}catch(Exception e) {
@@ -30,7 +30,7 @@ public class CommentServiceImpl implements CommentService{
 	}
 	
 	//Comment테이블에 저장하기 위한 메소드
-	public boolean insertComment(Comment Comment) {
+	public boolean insertComment(Comments Comment) {
 		try{
 			SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 			Date time = new Date();
@@ -44,9 +44,9 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	//db의 Comment테이블을 수정하기 위한 메소드
-	public boolean updateComment(Comment comment){	
+	public boolean updateComment(Comments comment){	
 		try {
-			Comment findComment = commentrepository.findById(comment.getCommentId()).get();
+			Comments findComment = commentrepository.findById(comment.getCommentId()).get();
 
 			findComment.setContext(comment.getContext());
 			SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");

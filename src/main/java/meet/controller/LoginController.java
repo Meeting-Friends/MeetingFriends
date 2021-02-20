@@ -23,9 +23,16 @@ public class LoginController{
 //	ServletContext servletContext;
 
 	@PostMapping("/signin")
-	public JSONObject loginCheck(@RequestBody Member member, Model model) {				
+	public JSONObject loginCheck(@RequestBody Member member, Model model) {		
 		Member newmember = memberservice.checkMember(member.getId(), member.getPw());
 		JSONObject jsonObj = new JSONObject();
+		
+		for(Member m : adminAllList.getLoginMemberList()) {	
+			if(m.getId().equals(newmember.getId())) {	//이미 로그인된 회원이라면 대기실화면으로 이동 불가
+				jsonObj.put("desturl","signin");
+				return jsonObj;
+			}
+		}
 		
 		if(newmember!=null) {	//회원정보가 있다면	
 			if(newmember.getId().equals("admin")) {	//관리자일때				
@@ -52,7 +59,6 @@ public class LoginController{
 			}			
 	
 		}else {	//DB에 회원정보가 없을때
-			jsonObj.put("memberinfo", null);
 			jsonObj.put("desturl", "signin");
 		}
 

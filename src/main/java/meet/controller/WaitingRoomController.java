@@ -90,8 +90,11 @@ public class WaitingRoomController {
 	}
 	
 	////회원 자신 정보 수정
-	@GetMapping("/updatemyinfo")	
-	public String updateMyInfo(Member member, Model model){
+	@PostMapping("/updatemyinfo")	
+	public String updateMyInfo(@RequestBody JSONObject json, Model model)throws JsonProcessingException{
+		ObjectMapper mapper = new ObjectMapper();	
+		Member member = mapper.readValue(json.toString(), Member.class);
+		
 		if(memberservice.updateMember(member)) {
 			return "success";
 		}else {

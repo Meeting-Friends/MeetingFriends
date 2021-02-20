@@ -6,13 +6,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import meet.model.domain.entity.Comment;
+import meet.model.domain.entity.Comments;
 import meet.model.domain.entity.Content;
 import meet.service.CommentService;
 import meet.service.ContentService;
@@ -38,7 +39,7 @@ public class QnAController {
 	}
 	
 	@PostMapping("/insertqna")
-	public String insertQnA(Content content, Model model) {
+	public String insertQnA(@RequestBody Content content, Model model) {
 		if(contentService.insertContent(content)) {
 			return "insertQnA success!";
 		}else {
@@ -47,7 +48,7 @@ public class QnAController {
 	}
 
 	@PostMapping("/modifyqna")
-	public String updateQnA(Content content, Model model) throws JsonProcessingException {		
+	public String updateQnA(@RequestBody Content content, Model model) throws JsonProcessingException {		
 		if(contentService.updateContent(content)) {
 			return "modifyQnA success";
 		}else {
@@ -72,7 +73,7 @@ public class QnAController {
 	}
 	
 	@PostMapping("/insertanswer")
-	public String insertAnswer(Comment comment, Model model) {
+	public String insertAnswer(@RequestBody Comments comment, Model model) {
 		if(commentService.insertComment(comment)) {
 			return "insertAnswer success!";
 		}else {
@@ -81,7 +82,7 @@ public class QnAController {
 	}
 
 	@PostMapping("/modifyanswer")
-	public String updateAnswer(Comment comment, Model model) throws JsonProcessingException {		
+	public String updateAnswer(@RequestBody Comments comment, Model model) throws JsonProcessingException {		
 		if(commentService.updateComment(comment)) {
 			return "updateAnswer success";
 		}else {
