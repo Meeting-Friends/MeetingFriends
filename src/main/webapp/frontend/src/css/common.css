@@ -27,7 +27,8 @@ a:hover {
 
 /*--- LAYOUT ---*/
 .contents {
-	max-width: 1020px;
+	max-width: 1020p
+	x;
 	margin: 0 auto;
 	padding: 0 5px;
 	width: 100%;
@@ -54,8 +55,8 @@ a:hover {
 }
 .form-wrapper.form-wrapper-sm {
 	max-width: 500px;
-	margin: 40px auto;
-	height: 740px;
+	margin: 5px auto;
+	height: 850px;
 	background-color: rgba(228, 231, 221, 0.7);
 }
 .form-wrapper.form-wrapper-smtwo {
@@ -120,6 +121,13 @@ a:hover {
 	font-weight: 700;
 	border-radius: 0.25rem;
 	border: 0 solid #dae1e7;
+}
+.btnroom {
+	background: #ad78f3;
+	color: rgb(255, 255, 255);
+	padding: 0.5rem 1.5rem;
+	font-weight: 700;
+	border-radius: 0.25rem;
 }
 .btn-rightdw {
 	position: fixed;
@@ -234,4 +242,9 @@ video {
 #headerBtn {
 	display: grid;
 	justify-content: right;
+}
+
+.tableplace{
+	position:relative;
+	top:100px;
 }

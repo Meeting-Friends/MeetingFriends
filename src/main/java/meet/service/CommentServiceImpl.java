@@ -47,7 +47,6 @@ public class CommentServiceImpl implements CommentService{
 	public boolean updateComment(Comments comment){	
 		try {
 			Comments findComment = commentrepository.findById(comment.getCommentId()).get();
-
 			findComment.setContext(comment.getContext());
 			SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 			Date time = new Date();

@@ -14,7 +14,7 @@
 					<td id="col2">{{ data.name }}</td>
 					<td id="col3">{{ data.nickname }}</td>
 					<td id="col4">{{ data.classification }}</td>
-					<td><button @click="toggleShow">회원정보 수정하기</button></td>
+					<td><button @click="toggleShow">update</button></td>
 				</tr>
 			</table>
 		</div>

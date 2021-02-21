@@ -41,32 +41,52 @@ public class WaitingRoomController {
 		ObjectMapper mapper = new ObjectMapper();
 		Room room = mapper.readValue(obj.get("room").toString(), Room.class);
 		Member member = mapper.readValue(obj.get("member").toString(), Member.class);
+		boolean flag = true;
+		
+		System.out.println(room.toString());
+		
+		if(room.getGender().equals("male")||room.getGender().equals("female")) {
+			if(!member.getGender().equals(room.getGender())) {
+				flag = false;
+			}
+		}
 
-		room.setRId(Integer.toString((int)(Math.random() * 10000)));	//방id 랜덤으로 생성
-		room.getRoommember().add(member);
-		model.addAttribute("roominfo",room);	
-		adminAllList.getRoomList().add(room);
+		if(flag) {
+			room.setRId(Integer.toString((int)(Math.random() * 10000)));	//방id 랜덤으로 생성
+			room.getRoommember().add(member);
+			model.addAttribute("roominfo",room);	
+			adminAllList.getRoomList().add(room);
 
-		return "https://192.168.25.51:3333/room/"+room.getRId();
+			return "https://192.168.25.51:3333/room/"+room.getRId();
+		}else {
+			return "waittingroom";
+		}
+
 	}
 
 	@PostMapping("/entranceroom")
 	public String entranceRoom(@RequestBody JSONObject obj, Model model) throws JsonMappingException, JsonProcessingException {
 
 		ObjectMapper mapper = new ObjectMapper();
-		Room room = mapper.readValue(obj.get("room").toString(), Room.class);
+		Room room = mapper.readValue(obj.get("room").toString(), Room.class);	//들어가려는 방정보
 		Member member = mapper.readValue(obj.get("member").toString(), Member.class);
+		boolean flag = true;
+
+		if(room.getGender().equals("male")||room.getGender().equals("female")) {
+			if(!member.getGender().equals(room.getGender())) {
+				flag = false;
+			}
+		}
 
 		for(Room r : adminAllList.getRoomList()){
-			if(room.getRId().equals(r.getRId()) && room.getGender().equals(member.getGender())) {
+			if(flag && r.getRId().equals(room.getRId())) {
 				r.getRoommember().add(member);	//입장하려는 방을 찾아서 member리스트에 추가
 				model.addAttribute("roominfo",room);
 
 				return "https://192.168.25.51:3333/room/"+room.getRId();	//room id와 함께 전송하도록 수정!!!!
 			}
 		}
-		
-		return "waittingroom";	
+		return "waittingroom";			
 	}
 
 	//방들 정보 반환
@@ -78,32 +98,30 @@ public class WaitingRoomController {
 			}			
 		}
 		System.out.println(adminAllList.getRoomList());
-		
+
 		return adminAllList.getRoomList(); 
 	}
-	
+
 	//회원 자신 정보 반환
 	@GetMapping("/getmyinfo/{id}")	
 	public String getMyInfo(@PathVariable String id, Model model) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();		
 		return mapper.writeValueAsString(memberservice.getMemberInfo(id));
 	}
-	
+
 	////회원 자신 정보 수정
 	@PostMapping("/updatemyinfo")	
 	public String updateMyInfo(@RequestBody JSONObject json, Model model)throws JsonProcessingException{
-		System.out.println("check!!!");
-		System.out.println(json);
 		ObjectMapper mapper = new ObjectMapper();	
 		Member member = mapper.readValue(json.toString(), Member.class);
-		
+
 		if(memberservice.updateMember(member)) {
 			return "success";
 		}else {
 			return "fail";
 		}
 	}
-	
+
 	//로그아웃 버튼 클릭시 실행
 	@PostMapping("/logout")
 	public String Logout(@RequestBody Member member, SessionStatus status) {
@@ -118,7 +136,7 @@ public class WaitingRoomController {
 			loginmemberlist.remove(loginmemberlist.stream().filter(m->m.getId().equals(id)).collect(Collectors.toList()).get(0));		
 			servletContext.setAttribute("loginmemberlist",loginmemberlist);
 		 */
-		
+
 		return "signin";
 	}
 }

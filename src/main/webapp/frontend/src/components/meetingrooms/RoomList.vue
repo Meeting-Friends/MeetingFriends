@@ -15,8 +15,8 @@
 				<tr v-for="value in model" v-bind:key="value.title">
 					<td>{{ value.rid }}</td>
 					<td>{{ value.title }}</td>
-					<td>{{ value.maxpeople }}</td>
-					<td>{{ value.theme }}/{{ value.maxNum }}</td>
+					<td>{{ value.roommember.length }}/{{ value.maxPeople }}</td>
+					<td>{{ value.theme }}</td>
 					<td>{{ value.gender }}</td>
 					<td><button @click="enterRoom(value)">입장</button></td>
 				</tr>
@@ -41,6 +41,7 @@ export default {
 		async getAllRooms() {
 			try {
 				const response = await fetchMeetingRooms();
+				console.log(response.data);
 				this.model = response.data;
 			} catch (error) {
 				console.log(error);

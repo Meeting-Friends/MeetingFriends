@@ -100,8 +100,10 @@
 						class="mt-1"
 					>
 						<b-form-checkbox value="rId">rId</b-form-checkbox>
-						<b-form-checkbox value="roomhostId">roomhostId</b-form-checkbox>
 						<b-form-checkbox value="title">title</b-form-checkbox>
+						<b-form-checkbox value="roommember.length"
+							>현재인원</b-form-checkbox
+						>
 						<b-form-checkbox value="maxpeople">maxpeople</b-form-checkbox>
 						<b-form-checkbox value="theme">theme</b-form-checkbox>
 						<b-form-checkbox value="gender">gender</b-form-checkbox>
@@ -142,26 +144,28 @@
 		</b-row>
 
 		<!-- Main table element -->
-		<b-table
-			:items="items"
-			:fields="fields"
-			:current-page="currentPage"
-			:per-page="perPage"
-			:filter="filter"
-			:filter-included-fields="filterOn"
-			:sort-by.sync="sortBy"
-			:sort-desc.sync="sortDesc"
-			:sort-direction="sortDirection"
-			stacked="md"
-			show-empty
-			small
-			@filtered="onFiltered"
-		>
-			<template #cell(name)="row">
-				{{ row.value.first }}{{ row.value.last }}
-			</template>
-		</b-table>
 
+		<div class="tableplace">
+			<b-table
+				:items="items"
+				:fields="fields"
+				:current-page="currentPage"
+				:per-page="perPage"
+				:filter="filter"
+				:filter-included-fields="filterOn"
+				:sort-by.sync="sortBy"
+				:sort-desc.sync="sortDesc"
+				:sort-direction="sortDirection"
+				stacked="md"
+				show-empty
+				small
+				@filtered="onFiltered"
+			>
+				<template #cell(name)="row">
+					{{ row.value }}
+				</template>
+			</b-table>
+		</div>
 		<!-- Info modal -->
 		<b-modal
 			:id="infoModal.id"
@@ -184,7 +188,7 @@ export default {
 			items: [],
 			fields: [
 				{
-					key: 'rId',
+					key: 'rid',
 					label: '방번호',
 					class: 'text-center',
 					sortable: true,
@@ -202,13 +206,13 @@ export default {
 					class: 'text-center',
 				},
 				{
-					key: 'roomhostId',
-					label: '방장아이디',
+					key: 'roommember.length',
+					label: '현재인원',
 					sortable: true,
 					class: 'text-center',
 				},
 				{
-					key: 'maxpeople',
+					key: 'maxPeople',
 					label: '최대인원',
 					sortable: true,
 					class: 'text-center',

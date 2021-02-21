@@ -21,12 +21,10 @@ public class SignUpController {
 	public String loginCheck(@RequestBody Member inputmember, Model model) {		
 
 		if(memberservice.checkExistingMember(inputmember.getId())) {
-			inputmember.setClassification("일반회원");
+			inputmember.setClassification("general");
 			memberservice.insertMember(inputmember);	//DB에 저장
-			System.out.println("회원가입성공");
 			return "Signin";	
 		}else {
-			System.out.println("회원가입실패");
 			return "Signup";	
 		}
 	}

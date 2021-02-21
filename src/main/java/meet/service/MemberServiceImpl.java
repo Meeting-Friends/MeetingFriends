@@ -25,7 +25,6 @@ public class MemberServiceImpl implements MemberService{
 
 	//사용자 정보 반환하는 메소드
 	public Member getMemberInfo(String id){
-		System.out.println(mrepository.findById(id).get());
 		return mrepository.findById(id).get();
 	}
 
@@ -33,10 +32,9 @@ public class MemberServiceImpl implements MemberService{
 	public boolean checkExistingMember(String id) {	
 		Optional<Member> findMember = mrepository.findById(id);
 		if(findMember.isPresent()){	//이미 존재하는 id라면 회원가입 불가
-			System.out.println("회원가입불가");
 			return false;
+			
 		}else {			//회원가입 가능, id만 중복되지 않으면 가능!
-			System.out.println("회원가입가능");
 			return true;
 		}
 	}
@@ -54,10 +52,12 @@ public class MemberServiceImpl implements MemberService{
 				throw new NullOfInfoException("로그인시 입력한 id, pw 정보누락!");
 			}
 			return mrepository.findMemberByIdAndPw(id,pw)
-					.orElseThrow(() -> new MemberNotFoundException("로그인  실패!!"));				
+					.orElseThrow(() -> new MemberNotFoundException("로그인  실패!!"));		
+			
 		} catch (MemberNotFoundException e) {
 			log.warn(e.getMessage()+"  "+id+"/ "+pw+"정보로 로그인 시도");
 			e.printStackTrace();
+			
 		} catch (NullOfInfoException e) {
 			log.info(e.getMessage());
 			e.printStackTrace();

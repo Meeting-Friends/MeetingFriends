@@ -37,14 +37,14 @@
 				<div>
 					<label for="gender">성별 </label>
 					<select id="gender" name="gender" v-model="gender">
-						<option value="남자">남자</option>
-						<option value="여자">여자</option>
-						<option value="전체">전체</option>
+						<option value="male">남자</option>
+						<option value="female">여자</option>
+						<option value="all">전체</option>
 					</select>
 				</div>
 				<button
 					type="submit"
-					class="btn"
+					class="btnroom"
 					v-bind:disabled="!title || !maxPeople || !theme || !gender"
 				>
 					채팅방 만들기
@@ -115,8 +115,5 @@ export default {
 <style scoped>
 .form-wrapper .form {
 	width: 100%;
-}
-.btn {
-	color: white;
 }
 </style>

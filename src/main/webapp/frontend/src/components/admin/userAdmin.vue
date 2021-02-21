@@ -145,26 +145,27 @@
 		</b-row>
 
 		<!-- Main table element -->
-		<b-table
-			:items="items"
-			:fields="fields"
-			:current-page="currentPage"
-			:per-page="perPage"
-			:filter="filter"
-			:filter-included-fields="filterOn"
-			:sort-by.sync="sortBy"
-			:sort-desc.sync="sortDesc"
-			:sort-direction="sortDirection"
-			stacked="md"
-			show-empty
-			small
-			@filtered="onFiltered"
-		>
-			<template #cell(name)="row">
-				{{ row.value.first }}{{ row.value.last }}
-			</template>
-		</b-table>
-
+		<div class="tableplace">
+			<b-table
+				:items="items"
+				:fields="fields"
+				:current-page="currentPage"
+				:per-page="perPage"
+				:filter="filter"
+				:filter-included-fields="filterOn"
+				:sort-by.sync="sortBy"
+				:sort-desc.sync="sortDesc"
+				:sort-direction="sortDirection"
+				stacked="md"
+				show-empty
+				small
+				@filtered="onFiltered"
+			>
+				<template #cell(name)="row">
+					{{ row.value }}
+				</template>
+			</b-table>
+		</div>
 		<!-- Info modal -->
 		<b-modal
 			:id="infoModal.id"
