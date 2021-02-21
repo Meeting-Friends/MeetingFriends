@@ -2,10 +2,14 @@ package meet.controller;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import meet.model.domain.dto.AdminAllList;
 import meet.model.domain.dto.Room;
@@ -21,18 +25,21 @@ public class AdminController {
 	
 	//전체 회원정보 반환
 	@GetMapping("/getMemberList")
-	public List<Member> getBoardList() {
-		return 	memberservice.getMemberList();
+	public String getBoardList() throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();		
+		return mapper.writeValueAsString(memberservice.getMemberList());
 	}
 	
 	//로그인된 전체 회원정보 반환
 	@GetMapping("/getLoginMemberList")
-	public List<Member> getLoginMemberList(Model model) {
-		return adminAllList.getLoginMemberList();
+	public String getLoginMemberList(Model model) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();		
+		return mapper.writeValueAsString(adminAllList.getLoginMemberList());
 	}
 	
 	@GetMapping("/getRoomList")
-	public List<Room> getRoomList(Model model) {
-		return adminAllList.getRoomList();
+	public String getRoomList(Model model) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();		
+		return mapper.writeValueAsString(adminAllList.getRoomList());
 	}
 }

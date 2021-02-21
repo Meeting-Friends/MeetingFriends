@@ -17,7 +17,7 @@ function signinUser(data) {
 }
 
 // 전체회원정보 get API
-function allClient() {
+function fetchUsers() {
 	return instance.get('/getMemberList');
 }
 
@@ -40,7 +40,7 @@ export {
 	signupUser,
 	signinUser,
 	memberAgreeUser,
-	allClient,
+	fetchUsers,
 	LogoutUser,
 	getMyInfo,
 	updateUser,

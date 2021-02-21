@@ -23,6 +23,10 @@ const router = new VueRouter({
 			component: () => import('@/views/Signup.vue'),
 		},
 		{
+			path: '/admin',
+			component: () => import('@/views/Admin.vue'),
+		},
+		{
 			path: '/waittingroom',
 			component: () => import('@/views/WaittingRoom.vue'),
 			//	meta: { auth: true },

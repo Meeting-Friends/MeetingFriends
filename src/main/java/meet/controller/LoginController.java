@@ -33,9 +33,9 @@ public class LoginController{
 				return jsonObj;
 			}
 		}
-		
+
 		if(newmember!=null) {	//회원정보가 있다면	
-			if(newmember.getId().equals("admin")) {	//관리자일때				
+			if(newmember.getClassification().equals("admin")) {	//관리자일때				
 				newmember.setPhonenumber(null);
 				newmember.setName(null);
 				newmember.setPw(null);
@@ -43,7 +43,7 @@ public class LoginController{
 				newmember.setComment(null);
 				jsonObj.put("memberinfo", newmember);
 				jsonObj.put("desturl", "admin");
-				
+				model.addAttribute("userinfo",model);	//회원 개인 session에 id 등록	
 			}else {	//일반회원일때
 				newmember.setPhonenumber(null);
 				newmember.setName(null);
