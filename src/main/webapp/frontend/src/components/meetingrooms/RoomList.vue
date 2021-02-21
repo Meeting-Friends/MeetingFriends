@@ -1,35 +1,35 @@
 <template>
-	<div id="roomlist">
+	<div id="roomlist" class="roomlist" cellspacing="1">
 		<table border="1">
-			<tr>
-				<th>채팅룸 번호</th>
-				<th>채팅룸 제목</th>
-				<th>참여인원</th>
-				<th>테마</th>
-				<th>최소나이</th>
-				<th>최대나이</th>
-				<th>성별</th>
-				<th>입장</th>
-			</tr>
-			<tr v-for="value in model" v-bind:key="value.rid">
-				<td>{{ value.rid }}</td>
-				<td>{{ value.title }}</td>
-				<td>{{ value.maxpeople }}</td>
-				<td>{{ value.theme }}/{{ value.maxNum }}</td>
-				<td>{{ value.minage }}</td>
-				<td>{{ value.maxage }}</td>
-				<td>{{ value.gender }}</td>
-				<td><button @click="enterRoom(value)">입장</button></td>
-			</tr>
+			<thead>
+				<tr>
+					<th>채팅룸 번호</th>
+					<th>채팅룸 제목</th>
+					<th>참여인원</th>
+					<th>테마</th>
+					<th>성별</th>
+					<th>입장</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="value in model" v-bind:key="value.title">
+					<td>{{ value.rid }}</td>
+					<td>{{ value.title }}</td>
+					<td>{{ value.maxpeople }}</td>
+					<td>{{ value.theme }}/{{ value.maxNum }}</td>
+					<td>{{ value.gender }}</td>
+					<td><button @click="enterRoom(value)">입장</button></td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 </template>
 
 <script>
-let model = {};
 import { fetchMeetingRooms } from '@/api/meetingrooms';
 import { enterMeetingroom } from '@/api/meetingrooms';
 import { sendInfoToMeetingroom } from '@/api/meetingrooms';
+let model = {};
 
 export default {
 	name: 'RoomList',
@@ -41,12 +41,10 @@ export default {
 		async getAllRooms() {
 			try {
 				const response = await fetchMeetingRooms();
-				console.log(response.data);
 				this.model = response.data;
-				//	this.logMessage = `${model.title} 채팅방이 생성되었습니다.`;
 			} catch (error) {
 				console.log(error);
-				this.logMessage = error.model.data;
+				alert('방 정보를 가져오는 중 문제가 발생했습니다.');
 			}
 		},
 		//채팅방 입장
@@ -60,10 +58,9 @@ export default {
 				};
 				const desturl = await enterMeetingroom(MeetingroomData); //room list 생성
 				await sendInfoToMeetingroom(desturl.data, userData.id);
-				//	this.logMessage = `${roomInfo.title} 채팅방이 생성되었습니다.`;
 			} catch (error) {
 				console.log(error);
-				this.logMessage = error.response.data;
+				alert('입장하는 중 문제가 발생했습니다.');
 			}
 		},
 	},

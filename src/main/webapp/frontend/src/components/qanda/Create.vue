@@ -62,8 +62,8 @@ export default {
 			await addqQuestion({
 				contentId: this.contentId,
 				uId: this.userId,
-				category: this.section,
-				title: this.subject,
+				category: this.category,
+				title: this.title,
 				context: this.context,
 			});
 			this.$router.push({
@@ -72,7 +72,7 @@ export default {
 		},
 		async updateContent() {
 			await modifyQuestion({
-				context_id: Number(this.$route.params.contentId),
+				contentId: Number(this.$route.params.contentId),
 				title: this.subject,
 				context: this.context,
 			});

@@ -1,7 +1,14 @@
 <template>
 	<div>
-		<h1>로그인 페이지</h1>
-		<SigninForm></SigninForm>
+		<div class="jb-box">
+			<video muted autoplay loop>
+				<source src="../video/BACKGROUND.mp4" type="video/mp4" />
+				<strong>Your browser does not support the video tag.</strong>
+			</video>
+			<div class="jb-text">
+				<SigninForm></SigninForm>
+			</div>
+		</div>
 	</div>
 </template>
 

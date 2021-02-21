@@ -28,7 +28,7 @@ function getMyInfo(data) {
 
 //회원 정보 수정
 function updateUser(userData) {
-	return instance.post('updataMyInfo', userData);
+	return instance.post('/updatemyinfo', userData);
 }
 
 //로그아웃

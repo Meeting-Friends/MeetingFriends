@@ -1,6 +1,6 @@
 <template>
+	<!-- Button trigger modal -->
 	<div id="modal-NewRoom">
-		<!-- Button trigger modal -->
 		<button
 			type="button"
 			class="btn btn-primary btn-lg"

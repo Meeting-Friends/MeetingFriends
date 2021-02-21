@@ -4,7 +4,7 @@ import router from './router';
 import store from './store';
 import VueSession from 'vue-session';
 
-var sessionOptions = {
+const sessionOptions = {
 	persist: true,
 };
 Vue.use(VueSession, sessionOptions);

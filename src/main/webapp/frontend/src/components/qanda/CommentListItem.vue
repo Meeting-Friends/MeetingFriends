@@ -23,11 +23,11 @@ export default {
 	},
 	components: {},
 	data() {
-		return {
-			name: data.User.filter(
-				item => item.user_id === this.commentObj.user_id,
-			)[0].name,
-		};
+		// return {
+		// 	name: data.User.filter(
+		// 		item => item.user_id === this.commentObj.user_id,
+		// 	)[0].name,
+		// };
 	},
 	methods: {
 		async modifyAnswer() {

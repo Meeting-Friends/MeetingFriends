@@ -1,6 +1,6 @@
 <template>
 	<div class="contents">
-		<h1 class="page-header">Create room</h1>
+		<h1>Create room</h1>
 		<div class="form-wrapper">
 			<form class="form" @submit.prevent="submitForm">
 				<div>
@@ -42,11 +42,14 @@
 						<option value="전체">전체</option>
 					</select>
 				</div>
-				<button type="submit" class="btn">채팅방 만들기</button>
+				<button
+					type="submit"
+					class="btn"
+					v-bind:disabled="!title || !maxPeople || !theme || !gender"
+				>
+					채팅방 만들기
+				</button>
 			</form>
-			<p class="log">
-				{{ logMessage }}
-			</p>
 		</div>
 	</div>
 </template>
@@ -63,7 +66,6 @@ export default {
 			maxPeople: '',
 			theme: '',
 			gender: '',
-			logMessage: '',
 			desturl: '',
 			userdata: '',
 		};
@@ -87,13 +89,13 @@ export default {
 					}),
 				});
 			} catch (error) {
+				alert('방을 만드는 중 문제가 발생했습니다.');
 				console.log(error.response.data.message);
-				this.logMessage = error.response.data.message;
 			} finally {
 				if (this.desturl == 'waittingroom') {
 					alert('찾으려는 방이 없거나 방 설정 성별과 본인의 성별이 다릅니다.');
 				}
-				await sendInfoToMeetingroom(
+				sendInfoToMeetingroom(
 					this.desturl.data,
 					this.$session.get('userinfo').id,
 				);

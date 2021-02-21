@@ -1,16 +1,17 @@
 <template>
 	<header>
 		<div>
-			<router-link :to="logoLink" class="logo"> MeetingFriends </router-link>
+			<router-link :to="logoLink" class="logo">
+				MeetingFriends
+			</router-link>
 		</div>
 		<div class="navigations">
 			<template v-if="isUserSignin">
 				<span class="id">{{ $store.state.id }}</span>
+				<router-link to="/qanda">Q and A</router-link>
 				<a href="javascript:;" @click="signoutUser">Signout</a>
 			</template>
-
-			<template>
-				<router-link to="/qanda">Q and A</router-link>
+			<template v-else>
 				<router-link to="/signin">로그인</router-link>
 				<router-link to="/signup">회원가입</router-link>
 			</template>
@@ -20,6 +21,7 @@
 
 <script>
 import { deleteCookie } from '@/utils/cookies';
+import { LogoutUser } from '@/api/auth.js';
 
 export default {
 	computed: {
@@ -31,12 +33,20 @@ export default {
 		},
 	},
 	methods: {
-		signoutUser() {
-			this.$store.commit('clearId');
-			this.$store.commit('clearToken');
-			deleteCookie('waiting_auth');
-			deleteCookie('waiting_user');
-			this.$router.push('/signin');
+		async signoutUser() {
+			try {
+				this.$store.commit('clearId');
+				this.$store.commit('clearToken');
+				deleteCookie('waiting_auth');
+				deleteCookie('waiting_user');
+
+				const response = await LogoutUser(this.$session.get('userinfo')); //로그아웃
+				this.$session.remove('userinfo');
+				this.$router.push(response.data);
+			} catch (error) {
+				alert('로그아웃 중 문제가 발생했습니다.');
+				console.log(error);
+			}
 		},
 	},
 };

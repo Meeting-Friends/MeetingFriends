@@ -1,9 +1,10 @@
 <template>
 	<div class="contents">
-		<div class="form-wrapper form-wrapper-sm">
+		<div class="form-wrapper form-wrapper-smtwo">
+			<div class="page-header">Welcome to MeetingFriends!</div>
 			<form @submit.prevent="submitForm" class="form">
-				<div>
-					<label for="id">아이디 : </label>
+				<div class="idandpw">
+					<label class="labelone" for="id">ID : </label>
 					<input id="id" type="text" v-model="id" />
 					<p class="validation-text">
 						<span class="warning" v-if="!isIdValid && id">
@@ -12,14 +13,18 @@
 					</p>
 				</div>
 				<div>
-					<label for="pw">비밀번호 : </label>
-					<input id="pw" type="text" v-model="pw" />
+					<label class="labelone" for="pw">PASSWORD : </label>
+					<input id="pw" type="password" v-model="pw" />
 				</div>
-				<button v-bind:disabled="!isIdValid || !pw" type="submit" clas="btn">
+				<button
+					class="btn btn-primary btn-sm"
+					v-bind:disabled="!isIdValid || !pw"
+					type="submit"
+					id="btn"
+				>
 					로그인
 				</button>
 			</form>
-			<p class="log">{{ logMessage }}</p>
 		</div>
 	</div>
 </template>
@@ -34,8 +39,6 @@ export default {
 			//form values
 			id: '',
 			pw: '',
-			//log
-			logMessage: '',
 		};
 	},
 	computed: {
@@ -52,17 +55,23 @@ export default {
 					pw: this.pw,
 				};
 				const data = await signinUser(userData);
-				console.log(data.data);
-				// this.$store.commit('setToken', data.token);
-				// this.$store.commit('setId', data.user.id);
+
+				if (data.data.desturl == 'admin') {
+					alert('관리자 admin 환영합니다.');
+				} else if (data.data.desturl == 'signin') {
+					alert('잘못된 정보를 입력하셨거나 이미 로그인중입니다.');
+				}
+
+				this.$store.commit('setToken', data.data.token);
+				this.$store.commit('setId', data.data.memberinfo.id);
 
 				this.$session.set('userinfo', data.data.memberinfo); //브라우저 localstorage에 멤버정보 저장
 				this.$router.push('../' + data.data.desturl);
 			} catch (error) {
 				// 에러 핸들링할 코드
 				console.log(error.response.data);
-				this.logMessage = error.response.data;
 				this.$router.push('../Signin');
+				alert('로그인 중 문제가 발생했습니다.');
 			} finally {
 				this.initForm();
 			}

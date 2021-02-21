@@ -92,6 +92,8 @@ public class WaitingRoomController {
 	////회원 자신 정보 수정
 	@PostMapping("/updatemyinfo")	
 	public String updateMyInfo(@RequestBody JSONObject json, Model model)throws JsonProcessingException{
+		System.out.println("check!!!");
+		System.out.println(json);
 		ObjectMapper mapper = new ObjectMapper();	
 		Member member = mapper.readValue(json.toString(), Member.class);
 		

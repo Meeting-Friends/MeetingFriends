@@ -1,40 +1,64 @@
 <template>
 	<div class="contents">
 		<div class="form-wrapper form-wrapper-sm">
-			<form @submit.prevent="submitForm" class="form">
+			<h4>Personal registration data</h4>
+			<form @submit.prevent="submitForm()" class="form">
 				<div>
-					<label for="id">아이디 : </label>
-					<input v-model="id" id="id" type="text" />
+					<label for="memberagree">memberagree</label>
+					동의하려면 체크하세요.
+					<input
+						v-model="memberagree"
+						id="memberagree"
+						type="checkbox"
+						name="memberagree"
+						value="memberagree"
+					/>
 				</div>
 				<div>
-					<label for="pw">비밀번호 : </label>
-					<input v-model="pw" id="pw" type="text" />
+					<label for="id">ID : </label>
+					<input v-model="id" id="id" type="text" placeholder="xxxx@xxxx.xxx" />
 				</div>
 				<div>
-					<label for="name">이름 : </label>
+					<label for="pw">PASSWORD : </label>
+					<input v-model="pw" id="pw" type="password" />
+				</div>
+				<div>
+					<label for="name">NAME : </label>
 					<input v-model="name" id="name" type="text" />
 				</div>
 				<div>
-					<label for="nickname">닉네임 : </label>
+					<label for="nickname">NICKNAME : </label>
 					<input v-model="nickname" id="nickname" type="text" />
 				</div>
 				<div>
-					<label for="phonenumber">핸드폰 번호 : </label>
-					<input v-model="phonenumber" id="phonenumber" type="text" />
+					<label for="phonenumber">PHONE NUMBER : </label>
+					<input
+						v-model="phonenumber"
+						id="phonenumber"
+						type="text"
+						placeholder="01x-xxxx-xxxx"
+					/>
 				</div>
 				<div>
-					<label for="birth">생년월일 : </label>
-					<input v-model="birth" id="birth" type="text" />
+					<label for="birth">BIRTH : </label>
+					<input
+						v-model="birth"
+						id="birth"
+						type="text"
+						placeholder="YYYY-MM-DD"
+					/>
 				</div>
 				<div>
 					<label for="gender">남성</label>
 					<input
-						v-model="male"
+						v-model="gender"
 						id="male"
 						type="radio"
 						name="gender"
 						value="male"
 					/>
+				</div>
+				<div>
 					<label for="gender">여성</label>
 					<input
 						v-model="gender"
@@ -43,31 +67,24 @@
 						name="gender"
 						value="female"
 					/>
-					<label for="gender">기타</label>
-					<input
-						v-model="gender"
-						id="none"
-						type="radio"
-						name="gender"
-						value="none"
-					/>
 				</div>
 				<button
+					class="btn btn-primary btn-sm"
 					v-bind:disabled="
 						!isIdValid ||
 							!pw ||
 							!name ||
 							!nickname ||
-							!phonenumber ||
-							!birth ||
-							!gender
+							!isPhoneNumberValid ||
+							!isBirthValid ||
+							!gender ||
+							!memberagree
 					"
 					type="submit"
 				>
 					회원 가입
 				</button>
 			</form>
-			<p class="log">{{ logMessage }}</p>
 		</div>
 	</div>
 </template>
@@ -75,6 +92,8 @@
 <script>
 import { signupUser } from '@/api/auth';
 import { validateEmail } from '@/utils/validation';
+import { validatePhoneNumber } from '@/utils/validation';
+import { validateBirth } from '@/utils/validation';
 
 export default {
 	data() {
@@ -87,20 +106,24 @@ export default {
 			phonenumber: '',
 			birth: '',
 			gender: '',
-			//log
-			logMessage: '',
+			memberagree: false,
 		};
 	},
 	computed: {
 		isIdValid() {
 			return validateEmail(this.id); //id가 이메일 형식이 맞는지 체크
 		},
+		isPhoneNumberValid() {
+			return validatePhoneNumber(this.phonenumber); //phonenumber가 핸드폰 번호 형식이 맞는지 체크
+		},
+		isBirthValid() {
+			return validateBirth(this.birth); //birth가 YYYY-MM-DD 형식에 맞는지 체크
+		},
 	},
 	methods: {
 		async submitForm() {
 			try {
 				// 비즈니스 로직
-				console.log('폼 제출');
 				const userData = {
 					id: this.id,
 					pw: this.pw,
@@ -110,37 +133,19 @@ export default {
 					birth: this.birth,
 					gender: this.gender,
 				};
-				console.log(
-					'userData' +
-						userData.id +
-						' ' +
-						userData.pw +
-						' ' +
-						userData.name +
-						' ' +
-						userData.nickname +
-						' ' +
-						userData.phonenumber +
-						' ' +
-						userData.birth +
-						' ' +
-						userData.gender,
-				);
 				const data = await signupUser(userData);
-				console.log(data.data);
 
 				if (data.data == 'Signin') {
 					this.logMessage = '회원가입성공';
-					alert('회원가입성공!!');
+					alert('회원가입성공');
 				} else {
-					//this.logMessage = '회원가입실패';
 					alert('회원가입실패');
 				}
 				this.$router.push('../' + data.data);
 			} catch (error) {
 				// 에러 핸들링할 코드
-				console.log(error.response.data);
-				this.logMessage = '회원가입실패';
+				alert('회원가입 중 에러가 발생했습니다.');
+				console.log(error);
 			} finally {
 				this.initForm();
 			}

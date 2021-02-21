@@ -18,19 +18,10 @@ const router = new VueRouter({
 			component: () => import('@/views/Signin.vue'),
 		},
 		{
-			path: '/memberagree',
-			component: () => import('@/views/MemberAgree.vue'),
-		},
-		{
 			path: '/signup',
 			// name: 'Signup',
 			component: () => import('@/views/Signup.vue'),
 		},
-		// {
-		// 	path: '/add',
-		// 	component: () => import('@/views/RoomAdd.vue'),
-		// 	meta: { auth: true },
-		// },
 		{
 			path: '/waittingroom',
 			component: () => import('@/views/WaittingRoom.vue'),
