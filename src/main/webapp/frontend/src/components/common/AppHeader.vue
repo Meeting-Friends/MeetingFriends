@@ -8,7 +8,6 @@
 		<div class="navigations">
 			<template v-if="isUserSignin">
 				<span class="id">{{ $store.state.id }}</span>
-				<router-link to="/qanda">Q and A</router-link>
 				<a href="javascript:;" @click="signoutUser">Signout</a>
 			</template>
 			<template v-else>
@@ -39,6 +38,7 @@ export default {
 				this.$store.commit('clearToken');
 				deleteCookie('waiting_auth');
 				deleteCookie('waiting_user');
+				deleteCookie('member');
 
 				const response = await LogoutUser(this.$session.get('userinfo')); //로그아웃
 				this.$session.remove('userinfo');

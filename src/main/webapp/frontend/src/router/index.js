@@ -14,12 +14,10 @@ const router = new VueRouter({
 		},
 		{
 			path: '/signin',
-			// name: 'Signin',
 			component: () => import('@/views/Signin.vue'),
 		},
 		{
 			path: '/signup',
-			// name: 'Signup',
 			component: () => import('@/views/Signup.vue'),
 		},
 		{
@@ -29,7 +27,6 @@ const router = new VueRouter({
 		{
 			path: '/waittingroom',
 			component: () => import('@/views/WaittingRoom.vue'),
-			//	meta: { auth: true },
 		},
 		{
 			path: '/qanda',
@@ -55,7 +52,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	if (to.meta.auth && !store.getters.isSignin) {
+	if (!store.getters.isSignin) {
 		console.log('인증이 필요합니다');
 		next('/signin');
 		return;

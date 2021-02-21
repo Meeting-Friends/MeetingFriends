@@ -3,7 +3,7 @@ function saveAuthToCookie(value) {
 }
 
 function saveUserToCookie(value) {
-	document.cookie = `waiting_user=${value}`;
+	document.cookie = `userEmail=${value}`;
 }
 
 function getAuthFromCookie() {
@@ -14,10 +14,10 @@ function getAuthFromCookie() {
 }
 
 function getUserFromCookie() {
-	return document.cookie.replace(
-		/(?:(?:^|.*;\s*)waiting_user\s*=\s*([^;]*).*$)|^.*$/,
-		'$1',
+	let match = document.cookie.match(
+		new RegExp('(^| )' + 'userEmail' + '=([^;]+)'),
 	);
+	if (match) return match[2];
 }
 
 function deleteCookie(value) {

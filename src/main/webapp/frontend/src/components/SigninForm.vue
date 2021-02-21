@@ -32,6 +32,7 @@
 <script>
 import { validateEmail } from '@/utils/validation';
 import { signinUser } from '@/api/auth';
+import { saveUserToCookie } from '@/utils/cookies';
 
 export default {
 	data() {
@@ -64,12 +65,13 @@ export default {
 
 				this.$store.commit('setToken', data.data.token);
 				this.$store.commit('setId', data.data.memberinfo.id);
+				saveUserToCookie(data.data.memberinfo.id);
 
 				this.$session.set('userinfo', data.data.memberinfo); //브라우저 localstorage에 멤버정보 저장
 				this.$router.push('../' + data.data.desturl);
 			} catch (error) {
 				// 에러 핸들링할 코드
-				console.log(error.response.data);
+				console.log(error);
 				this.$router.push('../Signin');
 				alert('로그인 중 문제가 발생했습니다.');
 			} finally {

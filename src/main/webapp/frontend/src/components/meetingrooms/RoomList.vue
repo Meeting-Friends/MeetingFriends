@@ -58,7 +58,7 @@ export default {
 					room: JSON.stringify(value),
 				};
 				const desturl = await enterMeetingroom(MeetingroomData); //room list 생성
-				await sendInfoToMeetingroom(desturl.data, userData.id);
+				sendInfoToMeetingroom(desturl.data, userData.id);
 			} catch (error) {
 				console.log(error);
 				alert('입장하는 중 문제가 발생했습니다.');

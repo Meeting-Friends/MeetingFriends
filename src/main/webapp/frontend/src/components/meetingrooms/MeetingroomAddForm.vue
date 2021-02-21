@@ -37,8 +37,8 @@
 				<div>
 					<label for="gender">성별 </label>
 					<select id="gender" name="gender" v-model="gender">
-						<option value="male">남자</option>
-						<option value="female">여자</option>
+						<option v-if="isGenderValid" value="male">남자</option>
+						<option v-else value="female">여자</option>
 						<option value="all">전체</option>
 					</select>
 				</div>
@@ -73,6 +73,9 @@ export default {
 	computed: {
 		isTitleValid() {
 			return this.title.length <= 20;
+		},
+		isGenderValid() {
+			return this.$session.get('userinfo').gender === 'male';
 		},
 	},
 	methods: {
