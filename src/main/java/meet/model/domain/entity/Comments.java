@@ -19,7 +19,7 @@ import lombok.ToString;
 @Setter
 @Entity
 public class Comments {	
-	@Id @GeneratedValue
+	@Id
 	private String commentId;
 	private String context;
 	private String createdAt;

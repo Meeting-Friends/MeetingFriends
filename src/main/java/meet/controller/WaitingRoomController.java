@@ -126,16 +126,11 @@ public class WaitingRoomController {
 	@PostMapping("/logout")
 	public String Logout(@RequestBody Member member, SessionStatus status) {
 		status.setComplete();	//세션 초기화
-		//id를 가진 회원이 로그아웃 요청을 했을 경우 loginmemberlist에서 삭제
-		adminAllList.getLoginMemberList()
-		.remove(adminAllList.getLoginMemberList().stream().filter(m->m.getId().equals(member.getId())).collect(Collectors.toList()).get(0));
-
-		/* servletcontext를 이용할때 구현방법
-		 * 
-			List<Member> loginmemberlist = (List<Member>) servletContext.getAttribute("loginmemberlist");
-			loginmemberlist.remove(loginmemberlist.stream().filter(m->m.getId().equals(id)).collect(Collectors.toList()).get(0));		
-			servletContext.setAttribute("loginmemberlist",loginmemberlist);
-		 */
+		if(!member.getClassification().equals("admin")) {
+			//id를 가진 회원이 로그아웃 요청을 했을 경우 loginmemberlist에서 삭제
+			adminAllList.getLoginMemberList()
+			.remove(adminAllList.getLoginMemberList().stream().filter(m->m.getId().equals(member.getId())).collect(Collectors.toList()).get(0));
+		}
 
 		return "signin";
 	}

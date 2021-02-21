@@ -100,14 +100,10 @@
 						class="mt-1"
 					>
 						<b-form-checkbox value="id">Id</b-form-checkbox>
-						<b-form-checkbox value="pw">pw</b-form-checkbox>
 						<b-form-checkbox value="nickname">nickname</b-form-checkbox>
 						<b-form-checkbox value="phonenumber">phonenumber</b-form-checkbox>
 						<b-form-checkbox value="birth">birth</b-form-checkbox>
 						<b-form-checkbox value="gender">gender</b-form-checkbox>
-						<b-form-checkbox value="classification"
-							>classification</b-form-checkbox
-						>
 					</b-form-checkbox-group>
 				</b-form-group>
 			</b-col>
@@ -218,16 +214,10 @@ export default {
 					class: 'text-center',
 				},
 				{
-					key: 'classification',
-					label: '권한',
+					key: 'phonenumber',
+					label: '연락처',
 					sortable: true,
 					class: 'text-center',
-				},
-				{
-					key: 'pw',
-					label: '비밀번호',
-					sortable: true,
-					// class: 'text-center',
 				},
 			],
 			totalRows: 1,

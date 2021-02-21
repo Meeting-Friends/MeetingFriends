@@ -58,7 +58,11 @@ export default {
 					room: JSON.stringify(value),
 				};
 				const desturl = await enterMeetingroom(MeetingroomData); //room list 생성
-				sendInfoToMeetingroom(desturl.data, userData.id);
+				if (desturl.data === 'waittingroom') {
+					alert('찾으려는 방이 없거나 방 설정 성별과 본인의 성별이 다릅니다.');
+				} else {
+					sendInfoToMeetingroom(desturl.data, userData.id);
+				}
 			} catch (error) {
 				console.log(error);
 				alert('입장하는 중 문제가 발생했습니다.');

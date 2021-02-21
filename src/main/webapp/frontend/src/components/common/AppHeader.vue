@@ -8,6 +8,7 @@
 		<div class="navigations">
 			<template v-if="isUserSignin">
 				<span class="id">{{ $store.state.id }}</span>
+				<!-- <router-link to="/qanda">Q&A</router-link> -->
 				<a href="javascript:;" @click="signoutUser">Signout</a>
 			</template>
 			<template v-else>
@@ -21,6 +22,7 @@
 <script>
 import { deleteCookie } from '@/utils/cookies';
 import { LogoutUser } from '@/api/auth.js';
+import { getUserFromCookie } from '@/utils/cookies';
 
 export default {
 	computed: {
@@ -28,7 +30,11 @@ export default {
 			return this.$store.getters.isSignin;
 		},
 		logoLink() {
-			return this.$store.getters.isSignin ? '/main' : '/signin';
+			return this.$store.getters.isSignin
+				? getUserFromCookie() == 'admin111@meetingfriends.com'
+					? '/admin'
+					: '/waittingroom'
+				: '/signin';
 		},
 	},
 	methods: {

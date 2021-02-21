@@ -95,9 +95,6 @@ export default {
 				alert('방을 만드는 중 문제가 발생했습니다.');
 				console.log(error.response.data.message);
 			} finally {
-				if (this.desturl == 'waittingroom') {
-					alert('찾으려는 방이 없거나 방 설정 성별과 본인의 성별이 다릅니다.');
-				}
 				sendInfoToMeetingroom(
 					this.desturl.data,
 					this.$session.get('userinfo').id,

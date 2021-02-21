@@ -53,6 +53,7 @@ export default {
 	},
 	methods: {
 		async uploadContent() {
+			console.log('upload');
 			let items = this.resdata.Content.sort((a, b) => {
 				return b.content_id - a.content_id;
 			});

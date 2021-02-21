@@ -1,13 +1,17 @@
 <template>
 	<div id="QandAlist">
-		<b-table
-			striped
-			hover
-			:items="items"
-			:fields="fields"
-			@row-clicked="rowClick"
-		></b-table>
-		<b-button @click="writeContent">질문작성</b-button>
+		<div class="qtableplace">
+			<b-table
+				striped
+				hover
+				:items="items"
+				:fields="fields"
+				@row-clicked="rowClick"
+			></b-table>
+		</div>
+		<div class="qnainsertbtn">
+			<b-button @click="writeContent">질문작성</b-button>
+		</div>
 	</div>
 </template>
 
@@ -16,7 +20,7 @@ import { fetchqandalist } from '@/api/qanda';
 
 export default {
 	name: 'QandAList',
-	async create() {
+	async created() {
 		const ret = await fetchqandalist();
 		this.items = ret.data;
 	},
@@ -25,7 +29,7 @@ export default {
 			//필드정보 확인
 			fields: [
 				{
-					key: 'content_id',
+					key: 'contentId',
 					label: '번호',
 				},
 				{
@@ -33,11 +37,11 @@ export default {
 					label: '제목',
 				},
 				{
-					key: 'created_at',
+					key: 'createdAt',
 					label: '작성일',
 				},
 				{
-					key: 'user_name',
+					key: 'uId',
 					label: '작성자',
 				},
 			],

@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Content {	
-	@Id @GeneratedValue
+	@Id
 	private String contentId;
 	private String category;
 	private String title;
