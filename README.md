@@ -124,12 +124,6 @@ app.use(cors());
 - :girl:최지원[(jiwonnn11)](https://github.com/jiwonnn11)
 - :man:김혜성[(baptize33)](https://github.com/baptize33)
 
-## :hammer:ISSUES
-
-- 
-- 
-
-
 
 ## :file_folder:참고
 - [(GOOGLE DRIVE)](https://drive.google.com/drive/folders/1c_-EskHJlcoH3ueRKNMtfeVfFhK0FC7k
