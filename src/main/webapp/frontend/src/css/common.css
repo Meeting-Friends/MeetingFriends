@@ -155,6 +155,13 @@ a:hover {
 	font-size: 1rem;
 	text-align: center;
 }
+.btnupdate {
+	background: #a165ee;
+	color: rgb(255, 251, 251);
+	padding: 0.4rem 0.7rem;
+	font-weight: 400;
+	border-radius: 0.2rem;
+}
 .warning {
 	color: #ff4057;
 }

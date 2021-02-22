@@ -32,7 +32,7 @@
 <script>
 import { validateEmail } from '@/utils/validation';
 import { signinUser } from '@/api/auth';
-import { saveUserToCookie } from '@/utils/cookies';
+import { saveUserToCookie, getUserFromCookie } from '@/utils/cookies';
 
 export default {
 	data() {
@@ -73,7 +73,6 @@ export default {
 				// 에러 핸들링할 코드
 				console.log(error);
 				this.$router.push('../Signin');
-				alert('로그인 중 문제가 발생했습니다.');
 			} finally {
 				this.initForm();
 			}
@@ -82,6 +81,11 @@ export default {
 			this.username = '';
 			this.password = '';
 		},
+	},
+	beforeCreate() {
+		if (getUserFromCookie()) {
+			this.$router.push('/waittingroom');
+		}
 	},
 };
 </script>

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,113 +24,114 @@ import meet.model.domain.dto.Room;
 import meet.model.domain.entity.Member;
 import meet.service.MemberService;
 
-@SessionAttributes({"userinfo","roominfo"})
-@RestController(value="WaitingRoomController")
-public class WaitingRoomController {
+@SessionAttributes({ "userinfo", "roominfo" })
+@RestController(value = "WaitingRoomController")
+public class WaitingRoomController{
 	@Autowired
 	AdminAllList adminAllList;
 	@Autowired
 	MemberService memberservice;
-	//@Autowired
-	//ServletContext servletContext;
+	// @Autowired
+	// ServletContext servletContext;
 
-
-	//방정보 입력후 방만들기 버튼 클릭시 실행(방장O)
+	// 방정보 입력후 방만들기 버튼 클릭시 실행(방장O)
 	@PostMapping("/createroom")
-	public String createRoom(@RequestBody JSONObject obj, Model model) throws JsonMappingException, JsonProcessingException {
+	public String createRoom(@RequestBody JSONObject obj, Model model)
+			throws JsonMappingException, JsonProcessingException {
 
 		ObjectMapper mapper = new ObjectMapper();
 		Room room = mapper.readValue(obj.get("room").toString(), Room.class);
 		Member member = mapper.readValue(obj.get("member").toString(), Member.class);
 		boolean flag = true;
-		
+
 		System.out.println(room.toString());
-		
-		if(room.getGender().equals("male")||room.getGender().equals("female")) {
-			if(!member.getGender().equals(room.getGender())) {
+
+		if (room.getGender().equals("male") || room.getGender().equals("female")) {
+			if (!member.getGender().equals(room.getGender())) {
 				flag = false;
 			}
 		}
 
-		if(flag) {
-			room.setRId(Integer.toString((int)(Math.random() * 10000)));	//방id 랜덤으로 생성
+		if (flag) {
+			room.setRId(Integer.toString((int) (Math.random() * 10000))); // 방id 랜덤으로 생성
 			room.getRoommember().add(member);
-			model.addAttribute("roominfo",room);	
+			model.addAttribute("roominfo", room);
 			adminAllList.getRoomList().add(room);
 
-			return "https://192.168.25.51:3333/room/"+room.getRId();
-		}else {
+			return "https://192.168.35.115:3333/room/" + room.getRId();
+		} else {
 			return "waittingroom";
 		}
 
 	}
 
 	@PostMapping("/entranceroom")
-	public String entranceRoom(@RequestBody JSONObject obj, Model model) throws JsonMappingException, JsonProcessingException {
+	public String entranceRoom(@RequestBody JSONObject obj, Model model)
+			throws JsonMappingException, JsonProcessingException {
 
 		ObjectMapper mapper = new ObjectMapper();
-		Room room = mapper.readValue(obj.get("room").toString(), Room.class);	//들어가려는 방정보
+		Room room = mapper.readValue(obj.get("room").toString(), Room.class); // 들어가려는 방정보
 		Member member = mapper.readValue(obj.get("member").toString(), Member.class);
 		boolean flag = true;
 
-		if(room.getGender().equals("male")||room.getGender().equals("female")) {
-			if(!member.getGender().equals(room.getGender())) {
+		if (room.getGender().equals("male") || room.getGender().equals("female")) {
+			if (!member.getGender().equals(room.getGender())) {
 				flag = false;
 			}
 		}
 
-		for(Room r : adminAllList.getRoomList()){
-			if(flag && r.getRId().equals(room.getRId())) {
-				r.getRoommember().add(member);	//입장하려는 방을 찾아서 member리스트에 추가
-				model.addAttribute("roominfo",room);
+		for (Room r : adminAllList.getRoomList()) {
+			if (flag && r.getRId().equals(room.getRId())) {
+				r.getRoommember().add(member); // 입장하려는 방을 찾아서 member리스트에 추가
+				model.addAttribute("roominfo", room);
 
-				return "https://192.168.25.51:3333/room/"+room.getRId();	//room id와 함께 전송하도록 수정!!!!
+				return "https://192.168.35.115:3333/room/" + room.getRId(); // room id와 함께 전송하도록 수정!!!!
 			}
 		}
-		return "waittingroom";			
+		return "waittingroom";
 	}
 
-	//방들 정보 반환
+	// 방들 정보 반환
 	@GetMapping("/getroomlist")
-	public List<Room> getRoomList() {	//반환타입 수정 가능성 확인!!!!
-		for(Room r:adminAllList.getRoomList()) {
-			if(r.getRoommember().size()<1) {	//방에 남은사람이 1명 미만일때
-				adminAllList.getRoomList().remove(r);	//방 리스트에서 방 제거			
-			}			
+	public List<Room> getRoomList() { // 반환타입 수정 가능성 확인!!!!
+		for (Room r : adminAllList.getRoomList()) {
+			if (r.getRoommember().size() < 1) { // 방에 남은사람이 1명 미만일때
+				adminAllList.getRoomList().remove(r); // 방 리스트에서 방 제거
+			}
 		}
 		System.out.println(adminAllList.getRoomList());
 
-		return adminAllList.getRoomList(); 
+		return adminAllList.getRoomList();
 	}
 
-	//회원 자신 정보 반환
-	@GetMapping("/getmyinfo/{id}")	
+	// 회원 자신 정보 반환
+	@GetMapping("/getmyinfo/{id}")
 	public String getMyInfo(@PathVariable String id, Model model) throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();		
+		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(memberservice.getMemberInfo(id));
 	}
 
-	////회원 자신 정보 수정
-	@PostMapping("/updatemyinfo")	
-	public String updateMyInfo(@RequestBody JSONObject json, Model model)throws JsonProcessingException{
-		ObjectMapper mapper = new ObjectMapper();	
+	//// 회원 자신 정보 수정
+	@PostMapping("/updatemyinfo")
+	public String updateMyInfo(@RequestBody JSONObject json, Model model) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
 		Member member = mapper.readValue(json.toString(), Member.class);
 
-		if(memberservice.updateMember(member)) {
+		if (memberservice.updateMember(member)) {
 			return "success";
-		}else {
+		} else {
 			return "fail";
 		}
 	}
 
-	//로그아웃 버튼 클릭시 실행
+	// 로그아웃 버튼 클릭시 실행
 	@PostMapping("/logout")
 	public String Logout(@RequestBody Member member, SessionStatus status) {
-		status.setComplete();	//세션 초기화
-		if(!member.getClassification().equals("admin")) {
-			//id를 가진 회원이 로그아웃 요청을 했을 경우 loginmemberlist에서 삭제
-			adminAllList.getLoginMemberList()
-			.remove(adminAllList.getLoginMemberList().stream().filter(m->m.getId().equals(member.getId())).collect(Collectors.toList()).get(0));
+		status.setComplete(); // 세션 초기화
+		if (!member.getClassification().equals("admin")) {
+			// id를 가진 회원이 로그아웃 요청을 했을 경우 loginmemberlist에서 삭제
+			adminAllList.getLoginMemberList().remove(adminAllList.getLoginMemberList().stream()
+					.filter(m -> m.getId().equals(member.getId())).collect(Collectors.toList()).get(0));
 		}
 
 		return "signin";

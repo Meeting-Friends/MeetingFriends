@@ -14,7 +14,11 @@
 					<td id="col2">{{ data.name }}</td>
 					<td id="col3">{{ data.nickname }}</td>
 					<td id="col4">{{ data.classification }}</td>
-					<td><button @click="toggleShow">update</button></td>
+					<td>
+						<button @click="toggleShow" class="btn btn-secondary">
+							update
+						</button>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -30,9 +34,14 @@
 				</div>
 				<div>
 					<label for="phonenumber">휴대폰 번호 </label>
-					<input id="phonenumber" type="text" v-model="phonenumber" />
+					<input
+						id="phonenumber"
+						type="text"
+						v-model="phonenumber"
+						placeholder="01x-xxxx-xxxx"
+					/>
 				</div>
-				<button type="submit">수정</button>
+				<button type="submit" class="btn btn-secondary">수정</button>
 			</form>
 		</div>
 	</div>
@@ -41,6 +50,7 @@
 <script>
 import { getMyInfo } from '@/api/auth.js';
 import { updateUser } from '@/api/auth';
+import { validatePhoneNumber } from '@/utils/validation';
 
 export default {
 	data() {
@@ -54,6 +64,11 @@ export default {
 		};
 	},
 	name: 'InfoClient',
+	computed: {
+		isPhoneNumberValid() {
+			return validatePhoneNumber(this.phonenumber); //phonenumber가 핸드폰 번호 형식이 맞는지 체크
+		},
+	},
 	methods: {
 		toggleShow() {
 			this.show = !this.show;

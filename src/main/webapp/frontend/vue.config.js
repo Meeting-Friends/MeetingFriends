@@ -4,7 +4,7 @@
 // };
 
 module.exports = {
-	outputDir: '../resources/static',
+	outputDir: '../../resources/static',
 	indexPath: './public/index.html',
 	devServer: {
 		proxy: 'http://localhost:80',

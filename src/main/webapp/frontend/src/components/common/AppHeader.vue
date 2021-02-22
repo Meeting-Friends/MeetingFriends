@@ -31,7 +31,7 @@ export default {
 		},
 		logoLink() {
 			return this.$store.getters.isSignin
-				? getUserFromCookie() == 'admin111@meetingfriends.com'
+				? getUserFromCookie() == '3333@3333.com'
 					? '/admin'
 					: '/waittingroom'
 				: '/signin';
@@ -44,7 +44,7 @@ export default {
 				this.$store.commit('clearToken');
 				deleteCookie('waiting_auth');
 				deleteCookie('waiting_user');
-				deleteCookie('member');
+				deleteCookie('userEmail');
 
 				const response = await LogoutUser(this.$session.get('userinfo')); //로그아웃
 				this.$session.remove('userinfo');

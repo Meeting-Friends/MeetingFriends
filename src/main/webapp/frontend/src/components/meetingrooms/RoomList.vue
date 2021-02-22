@@ -18,7 +18,11 @@
 					<td>{{ value.roommember.length }}/{{ value.maxPeople }}</td>
 					<td>{{ value.theme }}</td>
 					<td>{{ value.gender }}</td>
-					<td><button @click="enterRoom(value)">입장</button></td>
+					<td>
+						<button @click="enterRoom(value)" class="btn btn-secondary">
+							입장
+						</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
